@@ -1,0 +1,880 @@
+Request URL: https://ssc.kingsbroadband.net/backend/users/add
+Request Method: POST
+Status Code: 200 OK
+Remote Address: 150.242.23.148:443
+Referrer Policy: strict-origin-when-cross-origin
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 26 May 2022 10:26:42 GMT
+Server: nginx
+Transfer-Encoding: chunked
+Vary: Accept-Encoding
+Vary: Accept-Encoding
+Accept: application/json,
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Authorization: null
+Connection: keep-alive
+Content-Length: 62805
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundarykkHFHfNfX73hPs3E
+Cookie: jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8
+Host: ssc.kingsbroadband.net
+Origin: https://ssc.kingsbroadband.net
+Referer: https://ssc.kingsbroadband.net/users/add/0
+sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="101", "Microsoft Edge";v="101"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.64 Safari/537.36 Edg/101.0.1210.53
+
+accountId: mail1
+userGroupId: 26885
+userPlanId: 243769
+firstName: V.Krishna
+lastName: 
+gender: male
+phoneNumber: 9440486556
+enterOTPDisplay: no
+tempPhone: 
+altPhoneNumber: 
+emailId: ajju002372@gmail.com
+altEmailId: 
+address_line1: 3-60/2, bandlaguda, patancheru
+address_line2: 
+address_city: 
+address_pin: 
+address_state: 
+address_country: IN
+address: 
+data[Document][imagePic]: (binary)
+data[Document][imageSign]: (binary)
+createBilling: on
+installationCharge: 
+pagename: addUsers
+depositAmount: 
+routerCharge: 
+routerChargeMethod: oneTime
+afterAction: suspend
+gstNumber: 
+userType: home
+circuitId: 1722
+selectStbMac: 
+collection_area_import: 
+collection_street_import: 
+collection_block_import: 
+collection_latitude_import: 
+collection_longitude_import: 
+location_details_not_import: yes
+id_proof: 
+id_pin: 
+data[Document][submittedIdProof]: (binary)
+data[Document][submittedIdProofBack]: (binary)
+installationTime: 
+data[Document][submittedproof]: (binary)
+data[Document][submittedform]: (binary)
+caf_num: 
+data[Document][submittedReport]: (binary)
+mac: 
+ipPoolName: 
+disableUserIpAuth: 
+disableUserMacAuth: 
+disableUserPppoeAuth: 
+disableUserHotspotAuth: 
+activationDate: now
+expirationDate: never
+comments: 
+userReferralCode: 
+accountId: mail1
+userName: 022825455
+password: 12345678
+useBillingAddAsInstallationAdd: on
+installation_address_line1: 3-60/2, bandlaguda, patancheru
+installation_address_line2: 
+installation_address_city: 
+installation_address_pin: 
+installation_address_state: 
+installation_address_country: IN
+gstApplicableFrom: 2022-05-26
+customExpirationDate: 27-05-2022 15:55:35
+chequeDate: 26-05-2022
+staticIpAddress[]: 10.10.60.38
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 0
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 0
+ipoverrideBillingCycleEnable[]: 0
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 1
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 1
+ipoverrideBillingCycleEnable[]: 1
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 2
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 2
+ipoverrideBillingCycleEnable[]: 2
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 3
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 3
+ipoverrideBillingCycleEnable[]: 3
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 4
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 4
+ipoverrideBillingCycleEnable[]: 4
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 5
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 5
+ipoverrideBillingCycleEnable[]: 5
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 6
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 6
+ipoverrideBillingCycleEnable[]: 6
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 7
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 7
+ipoverrideBillingCycleEnable[]: 7
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 8
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 8
+ipoverrideBillingCycleEnable[]: 8
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 9
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 9
+ipoverrideBillingCycleEnable[]: 9
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 10
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 10
+ipoverrideBillingCycleEnable[]: 10
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 11
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 11
+ipoverrideBillingCycleEnable[]: 11
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 12
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 12
+ipoverrideBillingCycleEnable[]: 12
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 13
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 13
+ipoverrideBillingCycleEnable[]: 13
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 14
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 14
+ipoverrideBillingCycleEnable[]: 14
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 15
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 15
+ipoverrideBillingCycleEnable[]: 15
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 16
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 16
+ipoverrideBillingCycleEnable[]: 16
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 17
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 17
+ipoverrideBillingCycleEnable[]: 17
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 18
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 18
+ipoverrideBillingCycleEnable[]: 18
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 19
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 19
+ipoverrideBillingCycleEnable[]: 19
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 20
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 20
+ipoverrideBillingCycleEnable[]: 20
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 21
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 21
+ipoverrideBillingCycleEnable[]: 21
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 22
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 22
+ipoverrideBillingCycleEnable[]: 22
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 23
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 23
+ipoverrideBillingCycleEnable[]: 23
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 24
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 24
+ipoverrideBillingCycleEnable[]: 24
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 25
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 25
+ipoverrideBillingCycleEnable[]: 25
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 26
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 26
+ipoverrideBillingCycleEnable[]: 26
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 27
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 27
+ipoverrideBillingCycleEnable[]: 27
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 28
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 28
+ipoverrideBillingCycleEnable[]: 28
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 29
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 29
+ipoverrideBillingCycleEnable[]: 29
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 30
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 30
+ipoverrideBillingCycleEnable[]: 30
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+staticIpAddress[]: 
+staticIpBoundMac[]: 
+ipMacBillingCharge[]: 
+ipMacBillingOverrideEnable[]: 31
+ipMacBillingOverrideAmount[]: 
+ipMacBillingChargeMethod[]: 
+ipMacBillingActiveSince[]: 
+ipMacBillingActiveUntil[]: 
+ipMacBillingPeriod[]: 
+ipMacBillingPeriodType[]: 
+ipMacBillingIncludeTax[]: 31
+ipoverrideBillingCycleEnable[]: 31
+ipoverrideBillingCycleValue[]: 
+ipoverrideBillingCycleValueDate[]: 
+ipoverrideBillingCycleValueDay[]: 
+overrideAmountBasedOn: withTax
+useBillingAddAsInstallationAdd: on
+installation_address_country: IN
+paymentmethod: cash
+bankTransferMethod: NEFT
+userIPTVProfileType: 
+userVoiceProfileType: 
+userOTTProfileType: 
+
+
+fetch("https://ssc.kingsbroadband.net/users/user_stats/71945/mail1", {
+  "headers": {
+    "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+    "accept-language": "en-US,en;q=0.9",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "document",
+    "sec-fetch-mode": "navigate",
+    "sec-fetch-site": "same-origin",
+    "sec-fetch-user": "?1",
+    "upgrade-insecure-requests": "1",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/add/0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/users/get_profiles", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "null",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/add/0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "userGroupId=26885&accountId=mail1",
+  "method": "POST"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/users/get_current_profile_plans/", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "null",
+    "content-type": "application/x-www-form-urlencoded",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/add/0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "userGroupId=26885&accountId=mail1",
+  "method": "POST"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/users/add", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "null",
+    "content-type": "multipart/form-data; boundary=----WebKitFormBoundarykkHFHfNfX73hPs3E",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/add/0",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": "------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"accountId\"\r\n\r\nmail1\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userGroupId\"\r\n\r\n26885\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userPlanId\"\r\n\r\n243769\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"firstName\"\r\n\r\nV.Krishna\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"lastName\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"gender\"\r\n\r\nmale\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"phoneNumber\"\r\n\r\n9440486556\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"enterOTPDisplay\"\r\n\r\nno\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"tempPhone\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"altPhoneNumber\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"emailId\"\r\n\r\najju002372@gmail.com\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"altEmailId\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_line1\"\r\n\r\n3-60/2, bandlaguda, patancheru\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_line2\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_city\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_pin\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_state\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address_country\"\r\n\r\nIN\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"address\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][imagePic]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][imageSign]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"createBilling\"\r\n\r\non\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installationCharge\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"pagename\"\r\n\r\naddUsers\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"depositAmount\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"routerCharge\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"routerChargeMethod\"\r\n\r\noneTime\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"afterAction\"\r\n\r\nsuspend\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"gstNumber\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userType\"\r\n\r\nhome\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"circuitId\"\r\n\r\n1722\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"selectStbMac\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"collection_area_import\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"collection_street_import\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"collection_block_import\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"collection_latitude_import\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"collection_longitude_import\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"location_details_not_import\"\r\n\r\nyes\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"id_proof\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"id_pin\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][submittedIdProof]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][submittedIdProofBack]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installationTime\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][submittedproof]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][submittedform]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"caf_num\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"data[Document][submittedReport]\"; filename=\"\"\r\nContent-Type: application/octet-stream\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"mac\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipPoolName\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"disableUserIpAuth\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"disableUserMacAuth\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"disableUserPppoeAuth\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"disableUserHotspotAuth\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"activationDate\"\r\n\r\nnow\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"expirationDate\"\r\n\r\nnever\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"comments\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userReferralCode\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"accountId\"\r\n\r\nmail1\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userName\"\r\n\r\n022825455\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"password\"\r\n\r\n12345678\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"useBillingAddAsInstallationAdd\"\r\n\r\non\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_line1\"\r\n\r\n3-60/2, bandlaguda, patancheru\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_line2\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_city\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_pin\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_state\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_country\"\r\n\r\nIN\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"gstApplicableFrom\"\r\n\r\n2022-05-26\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"customExpirationDate\"\r\n\r\n27-05-2022 15:55:35\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"chequeDate\"\r\n\r\n26-05-2022\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n10.10.60.38\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n0\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n0\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n0\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n1\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n1\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n1\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n2\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n2\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n2\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n3\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n3\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n3\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n4\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n4\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n4\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n5\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n5\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n5\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n6\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n6\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n6\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n7\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n7\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n7\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n8\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n8\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n8\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n9\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n9\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n9\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n10\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n10\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n10\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n11\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n11\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n11\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n12\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n12\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n12\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n13\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n13\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n13\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n14\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n14\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n14\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n15\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n15\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n15\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n16\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n16\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n16\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n17\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n17\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n17\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n18\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n18\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n18\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n19\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n19\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n19\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n20\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n20\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n20\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n21\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n21\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n21\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n22\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n22\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n22\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n23\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n23\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n23\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n24\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n24\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n24\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n25\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n25\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n25\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n26\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n26\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n26\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n27\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n27\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n27\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n28\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n28\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n28\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n29\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n29\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n29\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n30\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n30\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n30\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpAddress[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"staticIpBoundMac[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingCharge[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideEnable[]\"\r\n\r\n31\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingOverrideAmount[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingChargeMethod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveSince[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingActiveUntil[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriod[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingPeriodType[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipMacBillingIncludeTax[]\"\r\n\r\n31\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleEnable[]\"\r\n\r\n31\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValue[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDate[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"ipoverrideBillingCycleValueDay[]\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"overrideAmountBasedOn\"\r\n\r\nwithTax\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"useBillingAddAsInstallationAdd\"\r\n\r\non\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"installation_address_country\"\r\n\r\nIN\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"paymentmethod\"\r\n\r\ncash\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"bankTransferMethod\"\r\n\r\nNEFT\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userIPTVProfileType\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userVoiceProfileType\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E\r\nContent-Disposition: form-data; name=\"userOTTProfileType\"\r\n\r\n\r\n------WebKitFormBoundarykkHFHfNfX73hPs3E--\r\n",
+  "method": "POST"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-vendors.2cdbc5a2.js", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/app.7c847bdd.js", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/fullcontainer-chunk.ff8d48e8.js", {
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-746c0e62.ae14b702.js", {
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-2d225015.8a50460e.js", {
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-3fdf99c5.402a3834.js", {
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-b7d0851e.529a29c7.js", {
+  "referrerPolicy": "strict-origin-when-cross-origin",
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/css/chunk-7584fffe.2c50cc5b.css", {
+  "headers": {
+    "accept": "text/css,*/*;q=0.1",
+    "accept-language": "en-US,en;q=0.9",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "style",
+    "sec-fetch-mode": "no-cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/js/chunk-7584fffe.c7813b53.js", {
+  "headers": {
+    "accept": "*/*",
+    "accept-language": "en-US,en;q=0.9",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "script",
+    "sec-fetch-mode": "no-cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/login/get_signin_logo", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0MTUiLCJ1c2VybmFtZSI6ImFkbWluQDEiLCJlbWFpbCI6ImFkbWluMUBtYWlsLmNvbSIsIm5hbWUiOiJtaXoiLCJhY2NvdW50X2lkIjoibWFpbDEiLCJhZG1pbl9ncm91cF9pZCI6IjgxIiwiYWRtaW5fY2xhc3NpZmljYXRpb25faWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsIm1hbmFnZXIiOm51bGwsImludml0ZV9jb2RlIjoiZDQxMDc0NDRlZmJmMGZkYTQzZTgzZDg3NTg5MmQwZDc2YTg5YjEwYyIsInBob25lIjoiODIyMDE1MTk0MSIsImVuYWJsZV9lbWFpbF9ub3RpZmljYXRpb24iOmZhbHNlLCJlbmFibGVfbG9naW5fbm90aWZpY2F0aW9uIjpmYWxzZSwibGFzdF9sb2dpbiI6bnVsbCwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxOToxNSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTk6MTUiLCJBY2NvdW50Ijp7ImlkIjoibWFpbDEiLCJhY2NvdW50X25hbWUiOiJwYXRhbmNoZXJ1IiwiYXBpX2tleSI6Ijg1Nzc3MGRmNDViZjIxNzE3NzFjOWFlYTc2NjRmNjkyNjgzNGFkMmQiLCJjb21wYW55X25hbWUiOiJNSUdDT0xPTlkiLCJzaXRlX2lkIjpudWxsLCJwYXJlbnRfaWQiOiJiZGw3IiwiZWRpdGlvbiI6ImlzcCIsInR5cGUiOiJ0cmlhbCIsInN0YXR1cyI6ImFjdGl2ZSIsInRpbWV6b25lIjoiQXNpYVwvS29sa2F0YSIsImJpbGxpbmdfZW50aXR5X2lkIjoiIiwiZnJhbmNoaXNlX3N0YXR1cyI6InBhaWQiLCJmcmFuY2hpc2VfaGVhZCI6Im5vIiwiYnBtX2lkIjpudWxsLCJjaXR5IjpudWxsLCJjb3VudHJ5X2lkIjoiMSIsImxhbmd1YWdlX2lkIjoiMSIsInRva2VuIjoiMTU5NzUxNzg0IiwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxNzo1NSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTc6NTUiLCJpc19kZWFjdGl2YXRlZCI6IjEiLCJzcGxpdF9wYXltZW50X2FjY291bnRfaWQiOm51bGx9LCJBZG1pbkdyb3VwIjp7ImlkIjoiODEiLCJuYW1lIjoiTENPIiwiYWNjb3VudF9pZCI6ImtpbmdzYnJvYWRiYW5kIiwiY3JlYXRlZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQiLCJtb2RpZmllZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQifSwiZXhwIjoxNjU0ODU2NzIyLCJIZWFkZXJFcnJvciI6eyJzZWNvbmRhcnlCYWNrVXBBbGVydCI6IiIsImZ0cEJhY2tVcE5vdFN0b3JpbmciOiIiLCJnb29nbGVCYWNrVXBOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNCYWNrVXBOb3RTdG9yaW5nIjoiIiwic2Vjb25kYXJ5TmF0bG9nQmFja1VwQWxlcnQiOiIiLCJnb29nbGVOYXRMb2dOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNOYXRMb2dOb3RTdG9yaW5nIjoiIiwicGF5bWVudCI6IiJ9fQ.73uHkSPMypBc9MRR76i4xht4RFkh0giCHL1ZO0IbOYo",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=97q3gpda8f0h67q5uo8f5lmep8",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/fonts/interFont/Inter-Regular.woff", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/css/app.c6650898.css",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/fonts/interFont/Inter-Light-BETA.woff", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/css/app.c6650898.css",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/fonts/interFont/Inter-Bold.woff", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/css/app.c6650898.css",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/fonts/interFont/Inter-Black.woff", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/css/app.c6650898.css",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/fonts/latov2/jaze.woff2?nixm3v", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/css/app.c6650898.css",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/dashboard/jaze_header", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0MTUiLCJ1c2VybmFtZSI6ImFkbWluQDEiLCJlbWFpbCI6ImFkbWluMUBtYWlsLmNvbSIsIm5hbWUiOiJtaXoiLCJhY2NvdW50X2lkIjoibWFpbDEiLCJhZG1pbl9ncm91cF9pZCI6IjgxIiwiYWRtaW5fY2xhc3NpZmljYXRpb25faWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsIm1hbmFnZXIiOm51bGwsImludml0ZV9jb2RlIjoiZDQxMDc0NDRlZmJmMGZkYTQzZTgzZDg3NTg5MmQwZDc2YTg5YjEwYyIsInBob25lIjoiODIyMDE1MTk0MSIsImVuYWJsZV9lbWFpbF9ub3RpZmljYXRpb24iOmZhbHNlLCJlbmFibGVfbG9naW5fbm90aWZpY2F0aW9uIjpmYWxzZSwibGFzdF9sb2dpbiI6bnVsbCwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxOToxNSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTk6MTUiLCJBY2NvdW50Ijp7ImlkIjoibWFpbDEiLCJhY2NvdW50X25hbWUiOiJwYXRhbmNoZXJ1IiwiYXBpX2tleSI6Ijg1Nzc3MGRmNDViZjIxNzE3NzFjOWFlYTc2NjRmNjkyNjgzNGFkMmQiLCJjb21wYW55X25hbWUiOiJNSUdDT0xPTlkiLCJzaXRlX2lkIjpudWxsLCJwYXJlbnRfaWQiOiJiZGw3IiwiZWRpdGlvbiI6ImlzcCIsInR5cGUiOiJ0cmlhbCIsInN0YXR1cyI6ImFjdGl2ZSIsInRpbWV6b25lIjoiQXNpYVwvS29sa2F0YSIsImJpbGxpbmdfZW50aXR5X2lkIjoiIiwiZnJhbmNoaXNlX3N0YXR1cyI6InBhaWQiLCJmcmFuY2hpc2VfaGVhZCI6Im5vIiwiYnBtX2lkIjpudWxsLCJjaXR5IjpudWxsLCJjb3VudHJ5X2lkIjoiMSIsImxhbmd1YWdlX2lkIjoiMSIsInRva2VuIjoiMTU5NzUxNzg0IiwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxNzo1NSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTc6NTUiLCJpc19kZWFjdGl2YXRlZCI6IjEiLCJzcGxpdF9wYXltZW50X2FjY291bnRfaWQiOm51bGx9LCJBZG1pbkdyb3VwIjp7ImlkIjoiODEiLCJuYW1lIjoiTENPIiwiYWNjb3VudF9pZCI6ImtpbmdzYnJvYWRiYW5kIiwiY3JlYXRlZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQiLCJtb2RpZmllZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQifSwiZXhwIjoxNjU0ODU2NzIyLCJIZWFkZXJFcnJvciI6eyJzZWNvbmRhcnlCYWNrVXBBbGVydCI6IiIsImZ0cEJhY2tVcE5vdFN0b3JpbmciOiIiLCJnb29nbGVCYWNrVXBOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNCYWNrVXBOb3RTdG9yaW5nIjoiIiwic2Vjb25kYXJ5TmF0bG9nQmFja1VwQWxlcnQiOiIiLCJnb29nbGVOYXRMb2dOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNOYXRMb2dOb3RTdG9yaW5nIjoiIiwicGF5bWVudCI6IiJ9fQ.73uHkSPMypBc9MRR76i4xht4RFkh0giCHL1ZO0IbOYo",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=18vn9423tic467q2a24kjcqlhh",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/users/user_stats_data/71945/mail1", {
+  "headers": {
+    "accept": "application/json,",
+    "accept-language": "en-US,en;q=0.9",
+    "authorization": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0MTUiLCJ1c2VybmFtZSI6ImFkbWluQDEiLCJlbWFpbCI6ImFkbWluMUBtYWlsLmNvbSIsIm5hbWUiOiJtaXoiLCJhY2NvdW50X2lkIjoibWFpbDEiLCJhZG1pbl9ncm91cF9pZCI6IjgxIiwiYWRtaW5fY2xhc3NpZmljYXRpb25faWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsIm1hbmFnZXIiOm51bGwsImludml0ZV9jb2RlIjoiZDQxMDc0NDRlZmJmMGZkYTQzZTgzZDg3NTg5MmQwZDc2YTg5YjEwYyIsInBob25lIjoiODIyMDE1MTk0MSIsImVuYWJsZV9lbWFpbF9ub3RpZmljYXRpb24iOmZhbHNlLCJlbmFibGVfbG9naW5fbm90aWZpY2F0aW9uIjpmYWxzZSwibGFzdF9sb2dpbiI6bnVsbCwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxOToxNSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTk6MTUiLCJBY2NvdW50Ijp7ImlkIjoibWFpbDEiLCJhY2NvdW50X25hbWUiOiJwYXRhbmNoZXJ1IiwiYXBpX2tleSI6Ijg1Nzc3MGRmNDViZjIxNzE3NzFjOWFlYTc2NjRmNjkyNjgzNGFkMmQiLCJjb21wYW55X25hbWUiOiJNSUdDT0xPTlkiLCJzaXRlX2lkIjpudWxsLCJwYXJlbnRfaWQiOiJiZGw3IiwiZWRpdGlvbiI6ImlzcCIsInR5cGUiOiJ0cmlhbCIsInN0YXR1cyI6ImFjdGl2ZSIsInRpbWV6b25lIjoiQXNpYVwvS29sa2F0YSIsImJpbGxpbmdfZW50aXR5X2lkIjoiIiwiZnJhbmNoaXNlX3N0YXR1cyI6InBhaWQiLCJmcmFuY2hpc2VfaGVhZCI6Im5vIiwiYnBtX2lkIjpudWxsLCJjaXR5IjpudWxsLCJjb3VudHJ5X2lkIjoiMSIsImxhbmd1YWdlX2lkIjoiMSIsInRva2VuIjoiMTU5NzUxNzg0IiwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxNzo1NSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTc6NTUiLCJpc19kZWFjdGl2YXRlZCI6IjEiLCJzcGxpdF9wYXltZW50X2FjY291bnRfaWQiOm51bGx9LCJBZG1pbkdyb3VwIjp7ImlkIjoiODEiLCJuYW1lIjoiTENPIiwiYWNjb3VudF9pZCI6ImtpbmdzYnJvYWRiYW5kIiwiY3JlYXRlZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQiLCJtb2RpZmllZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQifSwiZXhwIjoxNjU0ODU2NzIyLCJIZWFkZXJFcnJvciI6eyJzZWNvbmRhcnlCYWNrVXBBbGVydCI6IiIsImZ0cEJhY2tVcE5vdFN0b3JpbmciOiIiLCJnb29nbGVCYWNrVXBOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNCYWNrVXBOb3RTdG9yaW5nIjoiIiwic2Vjb25kYXJ5TmF0bG9nQmFja1VwQWxlcnQiOiIiLCJnb29nbGVOYXRMb2dOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNOYXRMb2dOb3RTdG9yaW5nIjoiIiwicGF5bWVudCI6IiJ9fQ.73uHkSPMypBc9MRR76i4xht4RFkh0giCHL1ZO0IbOYo",
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "sec-fetch-dest": "empty",
+    "sec-fetch-mode": "cors",
+    "sec-fetch-site": "same-origin",
+    "cookie": "jazewifi_sessions=18vn9423tic467q2a24kjcqlhh",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/img/default_photo.jpg", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+}); ;
+fetch("https://ssc.kingsbroadband.net/backend/img/isp-logo1.png", {
+  "headers": {
+    "sec-ch-ua": "\" Not A;Brand\";v=\"99\", \"Chromium\";v=\"101\", \"Microsoft Edge\";v=\"101\"",
+    "sec-ch-ua-mobile": "?0",
+    "sec-ch-ua-platform": "\"Windows\"",
+    "Referer": "https://ssc.kingsbroadband.net/users/user_stats/71945/mail1",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "body": null,
+  "method": "GET"
+});
