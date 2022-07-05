@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 class CablePayments extends StatefulWidget {
 
@@ -276,7 +276,6 @@ class _CablePaymentsState extends State<CablePayments> with AutomaticKeepAliveCl
           }
 
           if (year == null) {
-            // print('no year');
             batch.update(documentReference, {
               'pays.${mnth.year.toString()}': {
                 '__ytot': double.parse(amount),
@@ -293,9 +292,7 @@ class _CablePaymentsState extends State<CablePayments> with AutomaticKeepAliveCl
             });
 
             var month = doc.data()['pays'][mnth.year.toString()][mnt];
-            // print(month);
             if (month == null) {
-              // print('no month');
               batch.update(documentReference, {
                 'pays.${mnth.year.toString()}.${mnt}': {
                   '${orderID}': double.parse(amount),

@@ -22,7 +22,7 @@ class _NetPlansState extends State<NetPlans> with AutomaticKeepAliveClientMixin 
 
   @override
   void initState() {
-    plans = Utils.plans.map((key, value) => MapEntry(key, value));
+    plans = Utils.isp.plans.map((key, value) => MapEntry(key, value));
     keys = plans.keys.toList();
     super.initState();
   }
@@ -32,10 +32,10 @@ class _NetPlansState extends State<NetPlans> with AutomaticKeepAliveClientMixin 
     keys = plans.map((key, value) => MapEntry(key, value)).keys.toList();
     switch (viewPlan) {
       case 0:
-        keys.removeWhere((key) => !plans[key]['a']);
+        keys.removeWhere((key) => !(plans[key]['a']??false));
         break;
       case 1:
-        keys.removeWhere((key) => plans[key]['a']);
+        keys.removeWhere((key) => (plans[key]['a']??false));
         break;
     }
     return AbsorbPointer(
@@ -251,8 +251,8 @@ class _NetPlansState extends State<NetPlans> with AutomaticKeepAliveClientMixin 
           'plans.${plan['n']}.r': int.parse(r[1]),
           'plans.${plan['n']}.sr': int.parse(r[2]),
         }).then((value) {
-          Utils.plans[plan['n']]['r'] = int.parse(r[1]);
-          Utils.plans[plan['n']]['sr'] = int.parse(r[2]);
+          Utils.isp.plans[plan['n']]['r'] = int.parse(r[1]);
+          Utils.isp.plans[plan['n']]['sr'] = int.parse(r[2]);
           plans[plan['n']]['r'] = int.parse(r[1]);
           plans[plan['n']]['sr'] = int.parse(r[2]);
           Navigator.pop(context);
@@ -274,12 +274,12 @@ class _NetPlansState extends State<NetPlans> with AutomaticKeepAliveClientMixin 
     await FirebaseFirestore.instance.collection('data').doc('net').update({
       'plans.${plan['n']}.a': !plan['a']
     }).then((value) {
-      Utils.plans[plan['n']]['a'] = !plan['a'];
-      plans = Utils.plans.map((key, value) => MapEntry(key, value));
+      Utils.isp.plans[plan['n']]['a'] = !plan['a'];
+      plans = Utils.isp.plans.map((key, value) => MapEntry(key, value));
       keys = plans.keys.toList();
       Navigator.pop(context);
     }).catchError((e){
-      print(e);
+      print("ERROR: $e");
       Navigator.pop(context);
     });
     setState(() {

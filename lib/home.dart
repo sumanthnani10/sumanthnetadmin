@@ -4,7 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sumanth_net_admin/cable_payments.dart';
+import 'package:sumanth_net_admin/cable/cable_payments.dart';
+import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 import 'package:sumanth_net_admin/main.dart';
 import 'package:sumanth_net_admin/users.dart';
 
@@ -62,11 +63,12 @@ class _HomeScreenState extends State<HomeScreen> {
   int activeUsers = 0, onlineUsers = 0;
 
   getCount(setDState) async {
-    await Utils.checkLogin();
-    var r = await http.get(Utils.USERS_COUNT, headers: Utils.headers);
-    var resp = jsonDecode(r.body)['res'];
-    activeUsers = resp['active'];
-    onlineUsers = resp['online'];
+    ISPResponse ispResponse = await Utils.isp.getUsersCount();
+    var resp = ispResponse.response["data"];
+    if(ispResponse.success) {
+      activeUsers = resp["res"]['active'];
+      onlineUsers = resp["res"]['online'];
+    }
     setDState(() {});
   }
 
@@ -175,7 +177,63 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                  )
+                  ),
+                  Container(
+                    padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    margin:
+                    const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        borderRadius: BorderRadius.circular(8)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              setDState(() {
+                                Utils.changeISP("rvr");
+                                getCount(setDState);
+                              });
+                            },
+                            child: Text(
+                              "RVR",
+                              style: TextStyle(
+                                  color:
+                                  Utils.ispCode == "rvr" ? Colors.black : Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.all(8),
+                                primary:Utils.ispCode != "rvr" ? Colors.black : Colors.white),
+                          )),
+                        SizedBox(
+                          width: 16,
+                        ),
+                        Expanded(
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                setDState(() {
+                                  Utils.changeISP("ssc");
+                                  getCount(setDState);
+                                });
+                              },
+                              child: Text(
+                                "SSC",
+                                style: TextStyle(
+                                    color:
+                                    Utils.ispCode == "ssc" ? Colors.black : Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  padding: const EdgeInsets.all(8),
+                                  primary:Utils.ispCode != "ssc" ? Colors.black : Colors.white),
+                            )),
+                      ],
+                    ),
+                  ),
                 ] +
                     List.generate(_widgetDetails.length - 1, (i) {
                       i += 1;

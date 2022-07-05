@@ -1,0 +1,42 @@
+Request URL: https://ssc.kingsbroadband.net/backend/users/change_username
+Request Method: POST
+Status Code: 200 OK
+Remote Address: 150.242.23.148:443
+Referrer Policy: strict-origin-when-cross-origin
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Type: text/html; charset=UTF-8
+Date: Mon, 04 Jul 2022 15:36:07 GMT
+Server: nginx
+Set-Cookie: jazewifi_sessions=mbejql1iualg4a8o3vutlfc8nu; path=/; HttpOnly
+Transfer-Encoding: chunked
+Vary: Accept-Encoding
+Vary: Accept-Encoding
+Accept: application/json,
+Accept-Encoding: gzip, deflate, br
+Accept-Language: en-US,en;q=0.9
+Authorization: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjE0MTUiLCJ1c2VybmFtZSI6ImFkbWluQDEiLCJlbWFpbCI6ImFkbWluMUBtYWlsLmNvbSIsIm5hbWUiOiJtaXoiLCJhY2NvdW50X2lkIjoibWFpbDEiLCJhZG1pbl9ncm91cF9pZCI6IjgxIiwiYWRtaW5fY2xhc3NpZmljYXRpb25faWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsIm1hbmFnZXIiOm51bGwsImludml0ZV9jb2RlIjoiZDQxMDc0NDRlZmJmMGZkYTQzZTgzZDg3NTg5MmQwZDc2YTg5YjEwYyIsInBob25lIjoiODIyMDE1MTk0MSIsImVuYWJsZV9lbWFpbF9ub3RpZmljYXRpb24iOmZhbHNlLCJlbmFibGVfbG9naW5fbm90aWZpY2F0aW9uIjpmYWxzZSwibGFzdF9sb2dpbiI6bnVsbCwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxOToxNSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTk6MTUiLCJBY2NvdW50Ijp7ImlkIjoibWFpbDEiLCJhY2NvdW50X25hbWUiOiJwYXRhbmNoZXJ1IiwiYXBpX2tleSI6Ijg1Nzc3MGRmNDViZjIxNzE3NzFjOWFlYTc2NjRmNjkyNjgzNGFkMmQiLCJjb21wYW55X25hbWUiOiJNSUdDT0xPTlkiLCJzaXRlX2lkIjpudWxsLCJwYXJlbnRfaWQiOiJiZGw3IiwiZWRpdGlvbiI6ImlzcCIsInR5cGUiOiJ0cmlhbCIsInN0YXR1cyI6ImFjdGl2ZSIsInRpbWV6b25lIjoiQXNpYVwvS29sa2F0YSIsImJpbGxpbmdfZW50aXR5X2lkIjoiIiwiZnJhbmNoaXNlX3N0YXR1cyI6InBhaWQiLCJmcmFuY2hpc2VfaGVhZCI6Im5vIiwiYnBtX2lkIjpudWxsLCJjaXR5IjpudWxsLCJjb3VudHJ5X2lkIjoiMSIsImxhbmd1YWdlX2lkIjoiMSIsInRva2VuIjoiMTU5NzUxNzg0IiwiZGF0ZV9jcmVhdGVkIjoiMjAyMi0wNS0wMiAwOToxNzo1NSIsImRhdGVfdXBkYXRlZCI6IjIwMjItMDUtMDIgMDk6MTc6NTUiLCJpc19kZWFjdGl2YXRlZCI6IjEiLCJzcGxpdF9wYXltZW50X2FjY291bnRfaWQiOm51bGx9LCJBZG1pbkdyb3VwIjp7ImlkIjoiODEiLCJuYW1lIjoiTENPIiwiYWNjb3VudF9pZCI6ImtpbmdzYnJvYWRiYW5kIiwiY3JlYXRlZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQiLCJtb2RpZmllZCI6IjIwMjEtMTAtMTQgMTc6MTA6NDQifSwiZXhwIjoxNjU4MjQ0ODI1LCJIZWFkZXJFcnJvciI6eyJzZWNvbmRhcnlCYWNrVXBBbGVydCI6IiIsImZ0cEJhY2tVcE5vdFN0b3JpbmciOiIiLCJnb29nbGVCYWNrVXBOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNCYWNrVXBOb3RTdG9yaW5nIjoiIiwic2Vjb25kYXJ5TmF0bG9nQmFja1VwQWxlcnQiOiIiLCJnb29nbGVOYXRMb2dOb3RTdG9yaW5nIjoiIiwiYW1hem9uczNOYXRMb2dOb3RTdG9yaW5nIjoiIiwicGF5bWVudCI6IiJ9fQ.JY-vKYBLl4XVm-NpeM4UIo_GajzG_bsV8F-VfCJ5rmg
+Connection: keep-alive
+Content-Length: 107
+Content-Type: application/x-www-form-urlencoded
+Cookie: jazewifi_sessions=og3c9nvrp2k8um01hm159riqv0
+Host: ssc.kingsbroadband.net
+Origin: https://ssc.kingsbroadband.net
+Referer: https://ssc.kingsbroadband.net/users/edit/53239/mail1
+sec-ch-ua: " Not;A Brand";v="99", "Microsoft Edge";v="103", "Chromium";v="103"
+sec-ch-ua-mobile: ?0
+sec-ch-ua-platform: "Windows"
+Sec-Fetch-Dest: empty
+Sec-Fetch-Mode: cors
+Sec-Fetch-Site: same-origin
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36 Edg/103.0.1264.44
+
+oldUserNameValue: sumant
+newUserNameValue: sumanth10
+changeUsernameAccountId: mail1
+changeUsernameUserId: 53239
+
+genericBody: "User Name Has Been Changed."
+genericTitle: "User Name Changed"
+message: ""
+status: "success"

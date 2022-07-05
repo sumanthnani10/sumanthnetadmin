@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 import 'utils.dart';
 
 class Sessions extends StatefulWidget {
@@ -31,30 +32,22 @@ class _SessionsState extends State<Sessions> {
   @override
   void initState() {
     super.initState();
-    getLogs();
+    getSessions();
   }
 
-  getLogs() async {
+  getSessions() async {
     setState(() {
       gotSessions = false;
     });
-    await Utils.checkLogin();
-    resp =
-    await http.post(Utils.getUserSessionsByUIDLink(widget.user['uid']), headers: Utils.headers,);
+    ISPResponse ispResponse = await Utils.isp.getSessions(widget.user["uid"]);
+    if(ispResponse.success) {
+      sessions = ispResponse.response["data"];
+    } else {
+      Utils.showErrorDialog(context, "Error", "${ispResponse.message}");
+    }
     setState(() {
       gotSessions = true;
-      sessions = jsonDecode(resp.body)['aaData'].sublist(0,50);
     });
-    /*if (jsonDecode(resp.body)['status'] == 'success') {
-    } else {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ErrorScreen(
-              error: resp.body,
-            ),
-          ));
-    }*/
   }
 
   @override
@@ -65,10 +58,13 @@ class _SessionsState extends State<Sessions> {
         appBar: AppBar(
           iconTheme: IconThemeData(color: Colors.black),
           title: Text(
-            'User Logs',
+            'User Sessions',
             style: TextStyle(
                 color: Colors.black, fontSize: 24, fontWeight: FontWeight.w600),
           ),
+          actions: [
+            TextButton(onPressed: (){getSessions();}, child: Text("Reload"))
+          ],
           elevation: 0,
           backgroundColor: Colors.white,
         ),

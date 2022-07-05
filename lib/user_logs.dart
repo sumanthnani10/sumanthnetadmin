@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import 'error_screen.dart';
+import 'isp/jaze_isp.dart';
 import 'utils.dart';
 
 class UserLogs extends StatefulWidget {
@@ -40,24 +41,15 @@ class _UserLogsState extends State<UserLogs> {
     setState(() {
       gotLogs = false;
     });
-    await Utils.checkLogin();
-    resp = await http.get
-      (Utils.getUserLogsByUIDLink(widget.user['uid']), headers: Utils.headers,);
-    gotLogs = true;
-    // print(resp.bodyBytes);
-    logs = jsonDecode(resp.body)['aaData'];
-    setState(() {
-    });
-    /*if (jsonDecode(resp.body)['status'] == 'success') {
+    ISPResponse ispResponse = await Utils.isp.getLogs(widget.user["uid"]);
+    if(ispResponse.success) {
+      logs = ispResponse.response["data"];
     } else {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ErrorScreen(
-              error: resp.body,
-            ),
-          ));
-    }*/
+      Utils.showErrorDialog(context, "Error", "${ispResponse.message}");
+    }
+    setState(() {
+      gotLogs = true;
+    });
   }
 
   @override
@@ -70,6 +62,9 @@ class _UserLogsState extends State<UserLogs> {
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.w600),
         ),
+        actions: [
+          TextButton(onPressed: (){getLogs();}, child: Text("Reload"))
+        ],
         elevation: 0,
         backgroundColor: Colors.white,
       ),
@@ -88,6 +83,7 @@ class _UserLogsState extends State<UserLogs> {
                     Text('${logs[index]['message']}',style: messageStyle,),
                     Text('${logs[index]['created']}',style: macStyle,),
                     Text('${logs[index]['mac']} - ${logs[index]['mac_vendor']}',style: macStyle,),
+                    Text('${logs[index]['ip_addr']}',style: macStyle,),
                     if(logs[index]['password']!='-')
                     Text('${logs[index]['password']}',style: macStyle,),
                   ],

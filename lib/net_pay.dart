@@ -21,6 +21,7 @@ class NetPay {
       renewalStatusError,
       status,
       userID,
+      notes,
       uid;
   int amount, gst, internetCharges, renewalStatus, saved, staticPrice;
 
@@ -38,6 +39,7 @@ class NetPay {
     @required this.renewalStatusError,
     @required this.status,
     @required this.saved,
+    @required this.notes,
     @required this.staticPrice,
     @required this.userID,
     @required this.uid,
@@ -45,21 +47,22 @@ class NetPay {
 
   factory NetPay.fromJson(Map<dynamic, dynamic> i) {
     return NetPay(
-        amount: i["a"]??0,
+        amount: i["total"]??0,
         billID: i["bill_id"]??"",
-        coupon: i["c"]??"",
-        date: i["d"]??"",
+        coupon: i["coupon"]??"",
+        date: i["date"]??"",
         gst: i["gst"]??0,
-        orderID: i["i"]??"",
-        internetCharges: i["i_c"]??0,
-        plan: i["p"]??"",
-        response: i["r"]??"",
-        renewalStatus: i["rs"]??0,
-        renewalStatusError: "${i["rse"]}"??"",
-        status: i["s"]??"",
-        saved: i["sa"]??0,
-        staticPrice: i["stc"]??0,
-        userID: i["u_id"]??"",
+        orderID: i["id"]??"",
+        internetCharges: i["bill"]["internet"]??0,
+        plan: i["plan"]??"",
+        response: i["pay_resp"]??"",
+        renewalStatus: (i["renewal"]["status"]??0),
+        renewalStatusError: "${i["renewal"]["error"]}"??"",
+        status: i["status"]??"",
+        notes: i["notes"]??"",
+        saved: i["bill"]["saved"]??0,
+        staticPrice: i["bill"]["ip"]??0,
+        userID: i["userid"]??"",
         uid: i["uid"]??"",
     );
   }
@@ -204,8 +207,11 @@ class _NetPayTileState extends State<NetPayTile> {
               TextButton.icon(
                 onPressed: () async {
                   Map<String, dynamic> netUser = user.cast();
-                  netUser.addAll(Utils.netUsers[user['uid']]);
+                  // print(Utils.isp.netUsers[user['uid']]);
+                  // netUser.addAll(Utils.isp.netUsers[user['uid']]);
+                  print(netUser);
                   NetUser nUser = NetUser.fromJson(netUser);
+                  print(nUser);
                   if (pay.billID != null && pay.billID != "") {
                     Utils.showLoadingDialog(context, "Generating Bill");
                     await PdfGeneration.generateBill(
@@ -289,11 +295,11 @@ class _NetPayTileState extends State<NetPayTile> {
                           "rse": "Manual Renewal."
                         });
                         await FirebaseFirestore.instance
-                            .collection("npay")
+                            .collection("${Utils.isp.billsCollection}")
                             .doc("${tpay["bill_id"]}")
                             .set(tpay);
                         await FirebaseFirestore.instance
-                            .collection("npay")
+                            .collection("${Utils.isp.billsCollection}")
                             .doc("${pay.orderID}")
                             .delete();
                         Navigator.pop(context);
@@ -321,9 +327,8 @@ class _NetPayTileState extends State<NetPayTile> {
                           "i": pay.orderID,
                           "rse": "Manual Update."
                         });
-                        print("${pay.orderID}");
                         await FirebaseFirestore.instance
-                            .collection("npay")
+                            .collection("${Utils.isp.billsCollection}")
                             .doc("${pay.orderID}")
                             .update(tpay);
                         Navigator.pop(context);
@@ -352,11 +357,11 @@ class _NetPayTileState extends State<NetPayTile> {
                             "rse": "Manual Renewal."
                           });
                           await FirebaseFirestore.instance
-                              .collection("npay")
+                              .collection("${Utils.isp.billsCollection}")
                               .doc("${tpay["bill_id"]}")
                               .set(tpay);
                           await FirebaseFirestore.instance
-                              .collection("npay")
+                              .collection("${Utils.isp.billsCollection}")
                               .doc("${pay.orderID}")
                               .delete();
                           Navigator.pop(context);

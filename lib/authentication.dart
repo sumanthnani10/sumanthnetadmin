@@ -24,7 +24,7 @@ class LocalAuthenticationService {
         );
         return isAuthenticated;
       } on PlatformException catch (e) {
-        print(e);
+        print("ERROR: $e");
         return false;
       }
     }

@@ -18,7 +18,22 @@ import 'package:sumanth_net_admin/utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  if(kIsWeb) {
+    await Firebase.initializeApp(
+      options: FirebaseOptions(
+          apiKey: "AIzaSyBuw79axoZ0bDglFc3g7K--L6DARcahaTs",
+          authDomain: "sumanthnet-13082020.firebaseapp.com",
+          databaseURL: "https://sumanthnet-13082020.firebaseio.com",
+          projectId: "sumanthnet-13082020",
+          storageBucket: "sumanthnet-13082020.appspot.com",
+          messagingSenderId: "918068064191",
+          appId: "1:918068064191:web:7d5918f25a6a9e81f03b0a",
+          measurementId: "G-9HYY5NDBT9"
+      )
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
   if(!kIsWeb)
     setupLocator();
   runApp(MyApp());
@@ -78,7 +93,6 @@ class _LoginScreenState extends State<LoginScreen> {
       await FirebaseAuth.instance.signOut();
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print(kIsWeb);
       if (!kIsWeb) {
         loginWithBiom();
       }
@@ -116,8 +130,64 @@ class _LoginScreenState extends State<LoginScreen> {
             email: email,
             password: password)
         .catchError((e) {
-      print(e);
-      scaffoldKey.currentState
+      print("ERROR: $e");
+     ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text('$e')));
+    });
+
+    if(kIsWeb) {
+
+    } else {
+      // await Utils.rvrIsp.login();
+      await Utils.sscIsp.login();
+      // await Utils.rvrIsp.getUsers(context);
+      await Utils.sscIsp.getUsers(context);
+
+      Utils.isp = Utils.sscIsp;
+      Utils.ispCode = "ssc";
+
+      String token = await FirebaseMessaging.instance.getToken();
+      Utils.notif_token = token;
+      await FirebaseFirestore.instance
+          .collection('data')
+          .doc('notif_ids')
+          .update({
+        'admin${adminNum}': token,
+      });
+    }
+
+    await prefs.setInt('adminnum', adminNum);
+    var tt =
+        await FirebaseFirestore.instance.collection('data').doc('net').get();
+    Utils.staticIPPrice = tt.data()['static_ip_price'];
+    Utils.coupons = tt.data()['coupons'].values.toList();
+    Map<String, dynamic> pl = tt.data()['plans'];
+    var sortedKeys = pl.keys.toList(growable: false)
+      ..sort((k1, k2) => pl[k1]['i'].compareTo(pl[k2]['i']));
+    // Utils.isp.plans =
+    //     new Map.fromIterable(sortedKeys, key: (k) => k, value: (k) => pl[k]);
+    setState(() {
+      loading = false;
+    });
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => HomeScreen(),
+        ));
+  }
+
+  /*login(password) async {
+    setState(() {
+      loading = true;
+    });
+    String email = 'admin$adminNum@snet.in';
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: email,
+            password: password)
+        .catchError((e) {
+      print("ERROR: $e");
+     ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('$e')));
     });
 
@@ -171,15 +241,17 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       loading = false;
     });
+    SSC.init();
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => HomeScreen(),
         ));
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
+    // Utils.isp.getUsers(context);
     return Container(
       constraints: BoxConstraints(maxWidth: 400),
       child: Scaffold(

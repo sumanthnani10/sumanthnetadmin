@@ -91,7 +91,7 @@ class _NetPaymentsState
       gettingPayments = true;
     });
     await FirebaseFirestore.instance
-        .collection('npay')
+        .collection('${Utils.isp.billsCollection}')
         .get()
         .then((pays) async {
       Utils.netPayments = [];
@@ -100,7 +100,6 @@ class _NetPaymentsState
         var npt = np.data();
         npt['i'] = np.id;
         /*if(np.id != (npt['bill_id']??np.id)){
-          print("${npt['bill_id']} - ${np.id}");
           await FirebaseFirestore.instance.collection("npay").doc(np.id).delete();
           await FirebaseFirestore.instance.collection("npay").doc("${npt['bill_id']}").set(npt);
         }*/
@@ -147,7 +146,6 @@ class _NetPaymentsState
   }
 
   showReceipt(context, pay, Map user) async {
-    // print(pay);
     var rem = <Widget>[];
     double h8 = 8;
     if (pay['s'] != 'failed') {
@@ -288,7 +286,7 @@ class _NetPaymentsState
               TextButton.icon(
                 onPressed: () async {
                   Map netUser = user.cast();
-                  netUser.addAll(Utils.netUsers[user['uid']]);
+                  netUser.addAll(Utils.isp.netUsers[user['uid']]);
                   NetUser nUser = NetUser.fromJson(netUser);
                   if (pay['bill_id'] != null && pay['bill_id'] != "") {
                     Utils.showLoadingDialog(context, "Generating Bill");
@@ -371,14 +369,13 @@ class _NetPaymentsState
                               "i": pay['i'],
                               "rse": "Manual Renewal."
                             });
-                            print("${pay['i']}");
                             // await FirebaseFirestore.instance.collection("npay").doc("${pay['i']}").get().then((value) => u.addAll(value.data()));
                             await FirebaseFirestore.instance
-                                .collection("npay")
+                                .collection("${Utils.isp.billsCollection}")
                                 .doc("${pay['i']}")
                                 .delete();
                             await FirebaseFirestore.instance
-                                .collection("npay")
+                                .collection("${Utils.isp.billsCollection}")
                                 .doc("${pay['bill_id']}")
                                 .set(pay);
                             Navigator.pop(context);
@@ -405,9 +402,8 @@ class _NetPaymentsState
                               "i": pay['i'],
                               "rse": "Manual Update."
                             });
-                            print("${pay['i']}");
                             await FirebaseFirestore.instance
-                                .collection("npay")
+                                .collection("${Utils.isp.billsCollection}")
                                 .doc("${pay['i']}")
                                 .update(pay);
                             Navigator.pop(context);
@@ -434,14 +430,12 @@ class _NetPaymentsState
                                 "s": "success",
                                 "rse": "Manual Renewal."
                               });
-                              print("${pay['i']}");
-                              // await FirebaseFirestore.instance.collection("npay").doc("${pay['i']}").get().then((value) => u.addAll(value.data()));
                               await FirebaseFirestore.instance
-                                  .collection("npay")
+                                  .collection("${Utils.isp.billsCollection}")
                                   .doc("${pay['i']}")
                                   .delete();
                               await FirebaseFirestore.instance
-                                  .collection("npay")
+                                  .collection("${Utils.isp.billsCollection}")
                                   .doc("${pay['bill_id']}")
                                   .set(pay);
                               Navigator.pop(context);
@@ -677,12 +671,11 @@ class _NetPaymentsState
                           ? pay['r'].indexOf('TXNDATE')
                           : 0;
                       String date = pay['d'];*/
-                      var user = Utils.usersMap[pay['uid']];
+                      var user = Utils.isp.usersMap[pay['uid']];
                       return NetPayTile(pay: NetPay.fromJson(pay),user: user,);
                       /*return InkWell(
                         splashColor: Colors.black,
                         onTap: () async {
-                          print(pay['i']);
                           await showReceipt(context, pay, user);
                           setState(() {
 

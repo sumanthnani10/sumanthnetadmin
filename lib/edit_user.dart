@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:sumanth_net_admin/error_screen.dart';
+import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 
 import 'utils.dart';
 
@@ -27,19 +28,19 @@ class _EditUserState extends State<EditUser> {
 
   _EditUserState(this.user);
 
-  TextEditingController firstNameController,lastNameController,mobileController,emailController,addressController;
+  TextEditingController nameController,mobileController,emailController,addressController, ipController;
   bool staticIP = false;
   
 
   @override
   void initState() {
     super.initState();
-    firstNameController = new TextEditingController(text: user['first_name']);
-    lastNameController = new TextEditingController(text: user['last_name']);
+    nameController = new TextEditingController(text: user['name']);
     mobileController = new TextEditingController(text: user['mobile']);
     emailController = new TextEditingController(text: user['email']);
     addressController = new TextEditingController(text: user['address']);
-    staticIP = Utils.netUsers[user['uid']]['static_ip']??false;
+    ipController = new TextEditingController(text: user['static_ip']);
+    staticIP = user['static_ip']!="";
   }
 
   @override
@@ -83,10 +84,10 @@ class _EditUserState extends State<EditUser> {
                         Center(child: Text(user['user_id'],style: TextStyle(fontSize: 24),)),
                         SizedBox(height: 8,),
                         TextFormField(
-                          controller: firstNameController,
+                          controller: nameController,
                           textInputAction: TextInputAction.next,
                           maxLines: 1,
-                          maxLength: 16,
+                          maxLength: 30,
                           onEditingComplete: (){
                             FocusScope.of(context).unfocus();
                             FocusScope.of(context).nextFocus();
@@ -109,68 +110,6 @@ class _EditUserState extends State<EditUser> {
                               labelStyle: TextStyle(color: Colors.black),
                               contentPadding: const EdgeInsets.all(8),
                               labelText: 'First Name',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              fillColor: Colors.white),
-                        ),
-                        SizedBox(height: 8,),
-                        TextFormField(
-                          controller: lastNameController,
-                          textInputAction: TextInputAction.next,
-                          maxLines: 1,
-                          maxLength: 16,
-                          textCapitalization: TextCapitalization.words,
-                          inputFormatters:  [
-                            FilteringTextInputFormatter.allow(RegExp('[a-zA-Z]')),
-                          ],
-                          onEditingComplete: (){
-                            FocusScope.of(context).unfocus();
-                            FocusScope.of(context).nextFocus();
-                          },validator: (v){
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              labelStyle: TextStyle(color: Colors.black),
-                              contentPadding: const EdgeInsets.all(8),
-                              labelText: 'Last Name',
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              fillColor: Colors.white),
-                        ),
-                        SizedBox(height: 8,),
-                        TextFormField(
-                          controller: mobileController,
-                          textInputAction: TextInputAction.next,
-                          maxLines: 1,
-                          maxLength: 10,
-                          textCapitalization: TextCapitalization.words,
-                          inputFormatters:  [
-                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-                          ],
-                          onEditingComplete: (){
-                            FocusScope.of(context).unfocus();
-                            FocusScope.of(context).nextFocus();
-                          },validator: (v){
-                            if(v.isEmpty){
-                              return 'Cannot be empty';
-                            }
-                            if(v.length<10){
-                              return 'Must be 10 digits';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(color: Colors.black)),
-                              labelStyle: TextStyle(color: Colors.black),
-                              contentPadding: const EdgeInsets.all(8),
-                              labelText: 'Mobile',
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(8),
                                   borderSide: BorderSide(color: Colors.black)),
@@ -216,6 +155,76 @@ class _EditUserState extends State<EditUser> {
                               fillColor: Colors.white),
                         ),
                         SizedBox(height: 24,),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Flexible(child: TextFormField(
+                              controller: mobileController,
+                              textInputAction: TextInputAction.next,
+                              maxLines: 1,
+                              maxLength: 10,
+                              textCapitalization: TextCapitalization.words,
+                              inputFormatters:  [
+                                FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                              ],
+                              onEditingComplete: (){
+                                FocusScope.of(context).unfocus();
+                                FocusScope.of(context).nextFocus();
+                              },validator: (v){
+                              if(v.isEmpty){
+                                return 'Cannot be empty';
+                              }
+                              if(v.length<10){
+                                return 'Must be 10 digits';
+                              }
+                              return null;
+                            },
+                              decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(color: Colors.black)),
+                                  labelStyle: TextStyle(color: Colors.black),
+                                  contentPadding: const EdgeInsets.all(8),
+                                  labelText: 'Mobile',
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                      borderSide: BorderSide(color: Colors.black)),
+                                  fillColor: Colors.white),
+                            )),
+                            SizedBox(width: 8),
+                            Flexible(
+                              child: TextFormField(
+                                controller: ipController,
+                                textInputAction: TextInputAction.next,
+                                maxLines: null,
+                                enableSuggestions: true,
+                                keyboardType: TextInputType.number,
+                                onEditingComplete: (){
+                                  FocusScope.of(context).unfocus();
+                                  FocusScope.of(context).nextFocus();
+                                },validator: (v){
+                                  if(v.isEmpty){
+                                    return 'Cannot be empty';
+                                  }else {
+                                      return null;
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.black)),
+                                    labelStyle: TextStyle(color: Colors.black),
+                                    contentPadding: const EdgeInsets.all(8),
+                                    labelText: 'IP',
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(color: Colors.black)),
+                                    fillColor: Colors.white),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 8,),
                         TextFormField(
                           controller: addressController,
                           textInputAction: TextInputAction.done,
@@ -250,13 +259,13 @@ class _EditUserState extends State<EditUser> {
                             Text("Static IP: "),
                             Switch.adaptive(value: staticIP, onChanged: (v) async {
                               Utils.showLoadingDialog(context, "Loading");
-                              await FirebaseFirestore.instance.collection("nusers").doc("${user['uid']}").update({
+                              await FirebaseFirestore.instance.collection(Utils.isp.usersCollection).doc("${user['uid']}").update({
                                 "static_ip": v
                               }).then((value) {
                                 staticIP = v;
-                                Utils.netUsers[user["uid"]]["static_ip"] = v;
+                                Utils.isp.netUsers[user["uid"]]["static_ip"] = v;
                               }).catchError((e){
-                                print(e);
+                                print("ERROR: $e");
                               });
                               setState(() {});
                               Navigator.pop(context);
@@ -277,30 +286,33 @@ class _EditUserState extends State<EditUser> {
     );
   }
 
-  editUser()async{
+  editUser() async {
+    if(form_key.currentState.validate()){
+      setState(() {
+        loading=true;
+      });
+      Utils.showLoadingDialog(context, "Editing..");
+      ISPResponse ispResponse = await Utils.isp.editUser(user, nameController.text, mobileController.text, emailController.text, addressController.text, ipController.text);
+      setState(() {
+        loading=false;
+      });
+      Navigator.pop(context);
+      if(ispResponse.success) {
+        await Utils.showADialog(context, "Done", "${ispResponse.message}");
+        Navigator.pop(context);
+      } else {
+        await Navigator.push(context, Utils.createRoute(ErrorScreen(ispResponse: ispResponse),Utils.LTR));
+        Navigator.pop(context);
+      }
+    }
+  }
+
+  /*editUser()async{
     if(form_key.currentState.validate()){
       setState(() {
         loading=true;
       });
       await Utils.checkLogin();
-      /*"userId": user['uid'],
-            "account": "022825sumanthanetworks",
-            "userName": user['user_id'],
-            "password": "12345678",
-            "firstName": firstNameController.text,
-            "lastName": lastNameController.text,
-            "userGroupId": "${Utils.plans[user['plan']]['g']}",
-            "userPlanId": "${Utils.plans[user['plan']]['p']}",
-            "phoneNumber": mobileController.text,
-            "emailId": emailController.text,
-            "address_line1": addressController.text,
-            "address_line2": "Ptc",
-            "address_city": "Hyderabad",
-            "address_pin": "502319",
-            "address_state": "Telangana",
-            "mac": "",
-            "staticIpAddress[]": "",
-            "staticIpBoundMac[]": user['binded_mac'],*/
       var r = await http.post(Utils.EDIT_USER,headers: Utils.headers,
           body: {
             "userId": user['uid'],
@@ -311,7 +323,7 @@ class _EditUserState extends State<EditUser> {
             "userPlanId": "${Utils.plans[user['plan']]['p']}",
             "overrideAmount": "",
             "overrideAmountBasedOn": "withTax",
-            "firstName": firstNameController.text,
+            "firstName": nameController.text,
             "lastName": lastNameController.text,
             "phoneNumber": mobileController.text,
             "enterOTPDisplay": "yes",
@@ -446,5 +458,5 @@ class _EditUserState extends State<EditUser> {
         Navigator.push(context, MaterialPageRoute(builder: (context) => ErrorScreen(error: r.body,html: false,),));
       }
     }
-  }
+  }*/
 }

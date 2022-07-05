@@ -31,7 +31,7 @@ class NetUser {
         bindedMac: i['binded_mac'],
         onlineMac: i['online_mac'],
         isOnline: i['is_online'],
-        staticIP: i['static_ip']??false,
+        staticIP: i['static_ip']!="",
         lastEdit: i['last_edit'],
     );
   }

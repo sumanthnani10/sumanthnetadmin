@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:pdf/widgets.dart' as pw;
+import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 import 'package:sumanth_net_admin/net_pay.dart';
 import 'package:sumanth_net_admin/net_user.dart';
 import 'package:sumanth_net_admin/pdf_generation.dart';
@@ -60,25 +61,21 @@ class _UserBillsState extends State<UserBills> {
     setState(() {
       gotBills = false;
     });
-    await Utils.checkLogin();
-    resp = await http.post(
-      Utils.getUserBillsByUIDLink(widget.user['uid']),
-      headers: Utils.headers,
-    );
-    var r = jsonDecode(resp.body);
-    if (r['status'] == 'success') {
-
+    ISPResponse ispResponse = await Utils.isp.getBills(widget.user["uid"]);
+    var resp = ispResponse.response["data"];
+    if(ispResponse.success) {
+      bills = resp;
       await FirebaseFirestore.instance
-          .collection('npay').where("uid",isEqualTo: widget.user["uid"])
+          .collection(Utils.isp.billsCollection).where("uid",isEqualTo: widget.user["uid"])
           .get()
           .then((pays) async {
         fireStoreBills = [];
         for (int i = 0; i < pays.docs.length; i++) {
-          var np = pays.docs[i];
-          var npt = np.data();
-          npt['i'] = npt['i']??np.id;
+          var npt = pays.docs[i].data();
           fireStoreBills.add(npt);
-        };});
+        };}).catchError((e) {
+          print("ERROR: $e");
+      });
 
       fireStoreBills.sort((a, b) {
         String av = a['bill_id'], bv = b['bill_id'];
@@ -95,23 +92,13 @@ class _UserBillsState extends State<UserBills> {
 
       setState(() {
         gotBills = true;
-        bills = jsonDecode(r['message']);
       });
     } else {
       setState(() {
         gotBills = false;
       });
+      Utils.showErrorDialog(context, "Error", "${ispResponse.message}");
     }
-    /*if (jsonDecode(resp.body)['status'] == 'success') {
-    } else {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ErrorScreen(
-              error: resp.body,
-            ),
-          ));
-    }*/
   }
 
   copy(context, text) {
@@ -174,12 +161,11 @@ class _UserBillsState extends State<UserBills> {
                             children: [
                               InkWell(
                                   onTap: ()async {
-                                    selected_plan = "${Utils.plans.keys.first}";
+                                    selected_plan = "${Utils.isp.planNames.first}";
                                     List d = bills[index]['FranchiseStatement']['date_created'].substring(0, 10).toString().split("-");
                                     if (await askAmount(bills[index]['FranchiseStatement'], "${d[2]}-${d[1]}-${d[0]}")??false) {
                                       Map pay = bills[index]['FranchiseStatement'];
                                       Map netUser = widget.user.cast();
-                                      netUser.addAll(Utils.netUsers[widget.user['uid']]);
                                       NetUser nUser = NetUser.fromJson(netUser);
                                       Utils.showLoadingDialog(context, "Generating Bill");
                                       await PdfGeneration.generateBill(
@@ -204,11 +190,11 @@ class _UserBillsState extends State<UserBills> {
                                   )),
                               InkWell(
                                   onTap: ()async {
-                                    selected_plan = "${Utils.plans.keys.first}";
+                                    selected_plan = "${Utils.isp.planNames.first}";
                                     if (await assignPayment(bills[index]['FranchiseStatement'])??false) {
                                       Map pay = bills[index]['FranchiseStatement'];
                                       Map netUser = widget.user.cast();
-                                      netUser.addAll(Utils.netUsers[widget.user['uid']]);
+                                      netUser.addAll(Utils.isp.netUsers[widget.user['uid']]);
                                       NetUser nUser = NetUser.fromJson(netUser);
                                       Utils.showLoadingDialog(context, "Assigning Payment");
 
@@ -292,12 +278,12 @@ class _UserBillsState extends State<UserBills> {
 
   askAmount(p, dat) async {
     TextEditingController amountFieldController =
-    new TextEditingController(text: '${Utils.plans[selected_plan]['sr']}');
+    new TextEditingController(text: '${Utils.isp.plans[selected_plan]['sr']??0}');
     TextEditingController nameFieldController =
     new TextEditingController(text: name);
     TextEditingController dateFieldController =
     new TextEditingController(text: dat);
-    List<String> plans = Utils.plans.keys.toList();
+    List<String> plans = Utils.isp.planNames;
     GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
     bool gst = false;
@@ -336,7 +322,7 @@ class _UserBillsState extends State<UserBills> {
                           onChanged: (v) {
                             setDState(() {
                               selected_plan = v;
-                              amountFieldController.text = "${Utils.plans[selected_plan]['sr']}";
+                              amountFieldController.text = "${Utils.isp.plans[selected_plan]['sr']??0}";
                             });
                           }),
                     ),
@@ -401,7 +387,6 @@ class _UserBillsState extends State<UserBills> {
                     total = gst?(int.parse(amountFieldController.text) +
                         (0.18 * int.parse(amountFieldController.text)))
                         .toString().split('.').first:ic;
-                    // print("${ic} ${gstc} ${total}");
                     name = nameFieldController.text;
                     Navigator.of(context).pop(true);
                   }
@@ -418,20 +403,20 @@ class _UserBillsState extends State<UserBills> {
   assignPayment(p) async {
     Map user = widget.user;
     List d = p['date_created'].substring(0, 10).toString().split("-");
-    String id = Utils.generateId("npay_");
+    String id = Utils.generateId("${Utils.isp.billsCollection}_");
     var u = {
-      'a': Utils.plans[selected_plan]['sr'], // total amount
+      'a': Utils.isp.plans[selected_plan]['sr']??0, // total amount
       'bill_id': p['reference_id'], // bill id
       'c': "", // coupon used
       "d": "${d[2]}-${d[1]}-${d[0]}", // date
       'gst': 0, // gst
-      'i_c': Utils.plans[selected_plan]['sr'], // internet charges
+      'i_c': Utils.isp.plans[selected_plan]['sr']??0, // internet charges
       'p': selected_plan, // plan
       'r': "{PAYMENTMODE: Direct, GATEWAYNAME: Gpay, STATUS: Success, RESPMSG: ,}", // response
       'rs': 1, // renewal states
       'rse': "", // renewal error
       's': "success", // payment status
-      'sa': Utils.plans[selected_plan]['r'] - Utils.plans[selected_plan]['sr'], // saved
+      'sa': Utils.isp.plans[selected_plan]['r']??0 - Utils.isp.plans[selected_plan]['sr']??0, // saved
       'stc': 0, // static price
       'uid': user["uid"], // uid
       'u_id': user["user_id"], // user id
@@ -440,9 +425,9 @@ class _UserBillsState extends State<UserBills> {
     List<dynamic> paymentOptions = ["Gpay","Phonepe","Paytm","Cash","Card"];
     int selected = 0;
     
-    TextEditingController amountFieldController = new TextEditingController(text: '${Utils.plans[selected_plan]['sr']}');
+    TextEditingController amountFieldController = new TextEditingController(text: '${Utils.isp.plans[selected_plan]['sr']??0}');
     TextEditingController dateFieldController = new TextEditingController(text: u['d']);
-    List<String> plans = Utils.plans.keys.toList();
+    List<String> plans = Utils.isp.planNames;
     GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
     bool gst = false;
@@ -451,13 +436,13 @@ class _UserBillsState extends State<UserBills> {
     var calculate = () async {
       u['p'] = selected_plan;
       u['gst'] = 0;
-      u['stc'] = (static?Utils.staticIPPrice:0)* Utils.plans[selected_plan]['m'];
+      u['stc'] = (static?Utils.staticIPPrice:0)* Utils.isp.plans[selected_plan]['m']??1;
       u['i_c'] = int.parse(amountFieldController.text);
       if(gst){
         u["gst"] = (u['i_c'] * 0.18).toInt();
       }
       u['a'] = u['i_c'] + u['gst'] + u['stc'];
-      u['sa'] = Utils.plans[selected_plan]['r'] - u['i_c'];
+      u['sa'] = Utils.isp.plans[selected_plan]['r']??0 - u['i_c'];
       u['r'] = "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
     };
 
@@ -499,7 +484,7 @@ class _UserBillsState extends State<UserBills> {
                             onChanged: (v) {
                               setDState(() {
                                 selected_plan = v;
-                                amountFieldController.text = "${Utils.plans[selected_plan]['sr']}";
+                                amountFieldController.text = "${Utils.isp.plans[selected_plan]['sr']??0}";
                                 setDState((){calculate();});
                               });
                             }),
@@ -580,7 +565,7 @@ class _UserBillsState extends State<UserBills> {
                       Utils.showLoadingDialog(context, "Assigning");
 
                       await FirebaseFirestore.instance
-                          .collection('npay')
+                          .collection('${Utils.isp.billsCollection}')
                           .doc(u["bill_id"])
                           .set(u).catchError((e)async{await Utils.showErrorDialog(context, "Error", "$e");});
 

@@ -29,7 +29,7 @@ class _SendOtpState extends State<SendOtp> {
     sendOTP();
   }
 
-  sendOTP() async {
+  sendOTP() async {/*
     setState(() {
       sentOTP = false;
     });
@@ -49,15 +49,15 @@ class _SendOtpState extends State<SendOtp> {
           context,
           MaterialPageRoute(
             builder: (context) => ErrorScreen(
-              error: resp.body,
+              text: resp.body,
                 html: false
             ),
           ));
     }
-  }
+  */}
 
   verifyOTP() async {
-    if (!loading) {
+    /*if (!loading) {
       setState(() {
         loading = true;
       });
@@ -73,7 +73,6 @@ class _SendOtpState extends State<SendOtp> {
       setState(() {
         loading = false;
       });
-      print(jsonDecode(resp.body));
       if (jsonDecode(resp.body)['status'] == 'success') {
         Navigator.pop(context);
       } else {
@@ -81,12 +80,12 @@ class _SendOtpState extends State<SendOtp> {
             context,
             MaterialPageRoute(
               builder: (context) => ErrorScreen(
-                error: resp.body,
+                text: resp.body,
                 html: false,
               ),
             ));
       }
-    }
+    }*/
   }
 
   @override
