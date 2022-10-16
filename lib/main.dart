@@ -13,6 +13,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sumanth_net_admin/authentication.dart';
 import 'package:sumanth_net_admin/home.dart';
+import 'package:sumanth_net_admin/net_pay.dart';
 import 'package:sumanth_net_admin/test.dart';
 import 'package:sumanth_net_admin/utils.dart';
 
@@ -34,7 +35,7 @@ void main() async {
   } else {
     await Firebase.initializeApp();
   }
-  if(!kIsWeb)
+  // if(!kIsWeb)
     setupLocator();
   runApp(MyApp());
 }
@@ -104,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   loginWithBiom() async {
-    if (kIsWeb) return;
+    // if (kIsWeb) return;
     if (await auth.canAuthenticate) {
       if (await auth.authenticate()) {
         login([
@@ -135,17 +136,14 @@ class _LoginScreenState extends State<LoginScreen> {
           .showSnackBar(SnackBar(content: Text('$e')));
     });
 
-    if(kIsWeb) {
+    Utils.isp = Utils.sscIsp;
+    // await Utils.rvrIsp.login();
+    await Utils.sscIsp.login();
+    // await Utils.rvrIsp.getUsers(context);
+    await Utils.sscIsp.getUsers();
+    Utils.ispCode = "ssc";
 
-    } else {
-      // await Utils.rvrIsp.login();
-      await Utils.sscIsp.login();
-      // await Utils.rvrIsp.getUsers(context);
-      await Utils.sscIsp.getUsers(context);
-
-      Utils.isp = Utils.sscIsp;
-      Utils.ispCode = "ssc";
-
+    if(!kIsWeb){
       String token = await FirebaseMessaging.instance.getToken();
       Utils.notif_token = token;
       await FirebaseFirestore.instance
@@ -162,10 +160,6 @@ class _LoginScreenState extends State<LoginScreen> {
     Utils.staticIPPrice = tt.data()['static_ip_price'];
     Utils.coupons = tt.data()['coupons'].values.toList();
     Map<String, dynamic> pl = tt.data()['plans'];
-    var sortedKeys = pl.keys.toList(growable: false)
-      ..sort((k1, k2) => pl[k1]['i'].compareTo(pl[k2]['i']));
-    // Utils.isp.plans =
-    //     new Map.fromIterable(sortedKeys, key: (k) => k, value: (k) => pl[k]);
     setState(() {
       loading = false;
     });

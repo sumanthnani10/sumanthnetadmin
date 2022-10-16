@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sumanth_net_admin/isp/jaze_isp.dart';
-import 'utils.dart';
+import '../utils.dart';
 
 class Sessions extends StatefulWidget {
 

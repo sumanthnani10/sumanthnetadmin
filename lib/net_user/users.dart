@@ -5,20 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:share/share.dart';
-import 'package:sumanth_net_admin/edit_user.dart';
+import './edit_user.dart';
 import 'package:sumanth_net_admin/error_screen.dart';
 import 'package:sumanth_net_admin/isp/jaze_isp.dart';
-import 'package:sumanth_net_admin/otp_verification.dart';
-import 'package:sumanth_net_admin/sessions.dart';
+import './otp_verification.dart';
+import 'package:sumanth_net_admin/net_user/sessions.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import 'add_user.dart';
 import 'renew.dart';
-import 'user_bills.dart';
-import 'user_logs.dart';
-import 'utils.dart';
+import 'bills.dart';
+import 'logs.dart';
+import '../utils.dart';
 
 class UsersScreen extends StatefulWidget {
   @override
@@ -48,15 +48,15 @@ class _UsersScreenState extends State<UsersScreen>
   String sortKey = "user_id";
   bool sortIn = true; // true - Ascending, false - Descending
 
-  TextEditingController search_controller = new TextEditingController();
+  TextEditingController searchC = new TextEditingController();
 
-  TextEditingController emailFieldController = new TextEditingController();
+  TextEditingController emailC = new TextEditingController();
 
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
   http.Response res;
 
-  ScrollController scroll_controller = new ScrollController();
+  ScrollController scrollC = new ScrollController();
 
   TextStyle editStyle = TextStyle(color: Colors.blue, fontSize: 12);
 
@@ -70,17 +70,19 @@ class _UsersScreenState extends State<UsersScreen>
 
   @override
   void dispose() {
-    scroll_controller.dispose();
+    scrollC.dispose();
     super.dispose();
   }
 
   getUsers() async {
     setState(() {
       loaded = false;
+      busy = true;
     });
-    await Utils.isp.getUsers(context);
+    await Utils.isp.getUsers();
     setState(() {
       loaded = true;
+      busy = false;
     });
     changeUsersCat();
   }
@@ -167,6 +169,7 @@ class _UsersScreenState extends State<UsersScreen>
 
   @override
   Widget build(BuildContext context) {
+    // Utils.isp.loadPlans();
     return AbsorbPointer(
       absorbing: busy,
       child: GestureDetector(
@@ -205,7 +208,7 @@ class _UsersScreenState extends State<UsersScreen>
                       ),
                       Flexible(
                         child: TextField(
-                          controller: search_controller,
+                          controller: searchC,
                           maxLines: 1,
                           textInputAction: TextInputAction.search,
                           onChanged: (s) {},
@@ -218,7 +221,7 @@ class _UsersScreenState extends State<UsersScreen>
                               suffixIcon: InkWell(
                                 onTap: () {
                                   setState(() {
-                                    search_controller.text = '';
+                                    searchC.text = '';
                                     search = '';
                                   });
                                 },
@@ -342,13 +345,15 @@ class _UsersScreenState extends State<UsersScreen>
               color: Colors.white,
               child: Stack(
                 children: <Widget>[
+                  if(busy)
+                  LinearProgressIndicator(),
                   Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Utils.isp.users.length != 0
                           ? ListView.builder(
                               padding:
                                   const EdgeInsets.symmetric(vertical: 8.0),
-                              controller: scroll_controller,
+                              controller: scrollC,
                               itemCount: users.length,
                               itemBuilder: (c, index) {
                                 var user = users[index];
@@ -392,15 +397,12 @@ class _UsersScreenState extends State<UsersScreen>
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: <Widget>[
-                                                Align(
-                                                    alignment:
-                                                        Alignment.centerLeft,
-                                                    child: Text(
-                                                      'UID: ${user['uid']}',
-                                                      style: TextStyle(
-                                                          fontSize: 10),
-                                                      maxLines: 1,
-                                                    )),
+                                                Text(
+                                                  'UID: ${user['uid']}, Circuit ID: ${user['circuit']}',
+                                                  style: TextStyle(
+                                                      fontSize: 10),
+                                                  maxLines: 1,
+                                                ),
                                                 InkWell(
                                                   onTap: () {
                                                     editUser(user);
@@ -796,15 +798,13 @@ class _UsersScreenState extends State<UsersScreen>
                               },
                             )
                           : Center(child: Text(loaded ? 'No Users' : ''))),
-                  if (busy) Center(child: CircularProgressIndicator()),
-                  if (!loaded) LinearProgressIndicator(),
                   Align(
                     alignment: Alignment.bottomLeft,
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 0, 16),
                       child: InkWell(
                         onTap: () {
-                          scroll_controller.animateTo(0,
+                          scrollC.animateTo(0,
                               duration: Duration(microseconds: 800),
                               curve: Curves.fastLinearToSlowEaseIn);
                         },
@@ -888,19 +888,38 @@ class _UsersScreenState extends State<UsersScreen>
 
   shareUser(user) async {
     String text = "";
+
     if(Utils.ispCode == "rvr") {
       text =
           "{user_id: \"${user["user_id"]}\",\nname: \"${capitalize1st(user["name"])}\",\nphone: \"${user["mobile"]}\",\nemail: \"${user["email"]}\",\naddress: \"${formatAddress(user["address"])}\",\nplan: \"${planSelect(user["plan"])}\"}";
     } else if(Utils.ispCode == "ssc") {
-      text = "User ID: ${user["user_id"]}\nName: ${user["name"]}\n\nStatic IP Details:\nIP: ${user["static_ip"]}\nSubnet Mask: 255.255.255.0\nDefault Gateway: 10.10.60.1\nPrimary DNS: 103.243.44.42\nSecondary DNS: 8.8.8.8";
+
+      String router = "Router:\n";
+      String userID = user["user_id"];
+      userID = userID.replaceAll("022825", "");
+      userID = userID.replaceAll(new RegExp(r"[^\d]"), "");
+      router += "SSID: RVR Net x$userID\n";
+      int id = int.parse(userID);
+      userID = "rvrn";
+      int rem = id%4;
+      rem = rem == 0 ? 4 : rem;
+      for(int i = 0; i < rem-1; i++) {
+        userID += "0";
+      }
+      userID += "$id";
+      for(int i = 0; i < 4-rem; i++) {
+        userID += "0";
+      }
+      router += "Password: $userID";
+      text = "User ID: ${user["user_id"]}\nName: ${user["name"]}\n\nStatic IP Details:\nIP: ${user["static_ip"]}\nSubnet Mask: 255.255.255.0\nDefault Gateway: 10.10.60.1\nPrimary DNS: 103.243.44.42\nSecondary DNS: 8.8.8.8\n\n$router";
     }
     await Share.share(text);
   }
 
   shiftFromRVRToSSC(user) async {
     try {
-      Utils.showLoadingDialog(context, "Shifing..");
-      String plan = await shiftPopUp(user);
+      Utils.showLoadingDialog(context, "Shifting..");
+      Plan plan = await shiftPopUp(user);
       if (plan != null) {
         ISPResponse ispResponse = await Utils.sscIsp.shiftUser(user, plan);
         var t = ispResponse.response["data"];
@@ -919,9 +938,8 @@ class _UsersScreenState extends State<UsersScreen>
   }
 
   shiftPopUp(user) async {
-    String plan = "Select Plan";
-    var plans = ["Select Plan"]+Utils.sscIsp.planNames;
-    plan = plans[0];
+    List<Plan> plans = Utils.sscIsp.plans_.list;
+    Plan plan = plans[0];
     return showDialog(
         context: context,
         builder: (_) {
@@ -949,16 +967,16 @@ class _UsersScreenState extends State<UsersScreen>
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: DropdownButton(
+                        child: DropdownButton<Plan>(
                             isExpanded: false,
                             items: List.generate(
                                 plans.length,
-                                    (index) => DropdownMenuItem(
-                                  child: Text('${plans[index]}'),
+                                    (index) => DropdownMenuItem<Plan>(
+                                  child: Text('${plans[index].title}'),
                                   value: plans[index],
                                 )),
                             value: plan,
-                            onChanged: (v) {
+                            onChanged: (Plan v) {
                               setDState(() {
                                 plan = v;
                               });
@@ -1192,14 +1210,14 @@ class _UsersScreenState extends State<UsersScreen>
         setState(() {
           busy = true;
         });
-        Utils.isp.changeEmail(user["uid"], emailFieldController.text);
+        Utils.isp.changeEmail(user["uid"], emailC.text);
         /*await Utils.checkLogin();
         var resp = await http.post(Utils.CHANGE_EMAIL,
             body: {
               "name": "email",
               "pk": user['uid'],
               "accountId": "022825sumanthanetworks",
-              "value": emailFieldController.text
+              "value": emailC.text
             },
             headers: Utils.headers);
         if (jsonDecode(resp.body)['status'] == 'success') {
@@ -1222,7 +1240,7 @@ class _UsersScreenState extends State<UsersScreen>
         'Change UserID', 'Do you want to change UserID of ${user['user_id']}')) {
       if (await _showEmailDialog('Enter New User ID', user['user_id'])) {
         Utils.showLoadingDialog(context, "Changing User ID");
-        ISPResponse ispResponse = await Utils.isp.changeUserID(user["uid"], user['user_id'], emailFieldController.text);
+        ISPResponse ispResponse = await Utils.isp.changeUserID(user["uid"], user['user_id'], emailC.text);
         Navigator.pop(context);
         if(ispResponse.success) {
           getUsers();
@@ -1266,7 +1284,7 @@ class _UsersScreenState extends State<UsersScreen>
   }
 
   Future<bool> _showEmailDialog(String title, String old) {
-    emailFieldController.text = old;
+    emailC.text = old;
     return showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -1275,7 +1293,7 @@ class _UsersScreenState extends State<UsersScreen>
           content: Form(
             key: formKey,
             child: TextFormField(
-              controller: emailFieldController,
+              controller: emailC,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(labelText: "New"),
@@ -1317,13 +1335,13 @@ class _UsersScreenState extends State<UsersScreen>
     return showDialog(
       context: context,
       builder: (BuildContext context) {
-        var passwordFieldController = new TextEditingController(text: password);
+        var passwordC = new TextEditingController(text: password);
         return AlertDialog(
           title: Text(title),
           content: Form(
             key: formKey,
             child: TextFormField(
-              controller: passwordFieldController,
+              controller: passwordC,
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.visiblePassword,
               decoration: InputDecoration(labelText: "Password"),
@@ -1350,7 +1368,7 @@ class _UsersScreenState extends State<UsersScreen>
               onPressed: () {
                 if (formKey.currentState.validate()) {
                   Navigator.of(context)
-                      .pop([true, passwordFieldController.text]);
+                      .pop([true, passwordC.text]);
                 }
               },
             ),

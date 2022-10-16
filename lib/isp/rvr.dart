@@ -21,8 +21,8 @@ class RVRISP extends JazeISP {
     return {
       "userName": "${user["userID"]}",
       "password": "12345678",
-      "userGroupId": "${plans[plan]['g']}",
-      "userPlanId": "${plans[plan]['p']}",
+      "userGroupId": "${plans[plan].groupID}",
+      "userPlanId": "${plans[plan].profileID}",
       "firstName": "${user["name"]}",
       "phoneNumber": "${user["phone"]}",
       "emailId": "${user["email"]}",

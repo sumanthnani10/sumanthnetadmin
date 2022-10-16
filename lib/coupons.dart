@@ -704,7 +704,7 @@ class _SelectPlans extends State<SelectPlans>
     if(!viewOnly){
       plans = Utils.isp.planNames
           .toList()
-          .where((element) => Utils.isp.plans[element]['a'])
+          .where((element) => Utils.isp.plans[element].active)
           .toList();
     } else {
       plans = Utils.isp.planNames

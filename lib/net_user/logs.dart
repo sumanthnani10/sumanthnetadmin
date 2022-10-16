@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'error_screen.dart';
-import 'isp/jaze_isp.dart';
-import 'utils.dart';
+import '../error_screen.dart';
+import '../isp/jaze_isp.dart';
+import '../utils.dart';
 
 class UserLogs extends StatefulWidget {
 

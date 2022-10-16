@@ -1,325 +1,65 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
+import 'package:printing/printing.dart';
 
+import 'isp/jaze_isp.dart';
 import 'utils.dart';
 
 class PdfGeneration {
-  static generateBill(
-      bool isGst,
-      String userID,
-      String userName,
-      String address,
-      String mobile,
-      String email,
-      String plan,
-      String id,
-      String date,
-      String internetCharges,
-      String gst,
-      String total) async {
+
+  static List amounts = [
+    {
+      "key": "internet",
+      "title": "Internet Charges",
+    },
+    {
+      "key": "ip",
+      "title": "Public IP",
+    },
+    {
+      "key": "installation",
+      "title": "Installation",
+    },
+    {
+      "key": "router",
+      "title": "Router",
+    },
+    {
+      "key": "other",
+      "title": "Others",
+    },
+  ];
+
+  static generateBill(user, bill) async {
     var pdf = Document();
+    var content = await getPDF(user, bill);
     pdf.addPage(Page(
         margin: const EdgeInsets.all(0),
-        pageFormat: PdfPageFormat.a5,
-        build: (c) => Column(children: <Widget>[
-              Container(color: PdfColors.orange600, height: 20, child: Row()),
-              Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text('Sumanth Net (RVR NET)',
-                            style: TextStyle(
-                                color: PdfColors.blue900, fontSize: 18)),
-                        if (isGst)
-                          Text('GST: 36AGLPB6730FIZL',
-                              style: TextStyle(
-                                  color: PdfColor.fromHex('#000000'),
-                                  fontSize: 8)),
-                        SizedBox(height: 2),
-                        Text(
-                            '12-83/1, Srinagar Colony\nPatancheru, Sangareddy, Telangana\n8801707182',
-                            style: TextStyle(
-                                color: PdfColor.fromHex('#000000'),
-                                fontSize: 10)),
-                        SizedBox(height: 16),
-                        Text('Invoice',
-                            style: TextStyle(
-                                color: PdfColors.purple,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                                child: Container(
-                              decoration: BoxDecoration(
-                                  border: Border(left: BorderSide())),
-                              padding: const EdgeInsets.only(left: 2),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Customer Details',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 9),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${userID}',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${userName}',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${address.length > 25 ? address.substring(0, 25) : address}',
-                                    style: TextStyle(
-                                      fontSize: 9,
-                                    ),
-                                    maxLines: 2,
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${mobile}',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    '${email}',
-                                    style: TextStyle(fontSize: 9),
-                                  ),
-                                ],
-                              ),
-                            )),
-                            Flexible(
-                                child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(left: 2),
-                                  decoration: BoxDecoration(
-                                      border: Border(left: BorderSide())),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Plan',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 9),
-                                      ),
-                                      Text(
-                                        '${plan}',
-                                        style: TextStyle(fontSize: 9),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(height: 12),
-                                Container(
-                                  padding: const EdgeInsets.only(left: 2),
-                                  decoration: BoxDecoration(
-                                      border: Border(left: BorderSide())),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Expires In',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 9),
-                                      ),
-                                      Text(
-                                        '${Utils.isp.plans[plan]['m']} ${Utils.isp.plans[plan]['m'] == 1 ? "Month" : "Months"}',
-                                        style: TextStyle(fontSize: 9),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            )),
-                            Flexible(
-                                child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.only(left: 2),
-                                  decoration: BoxDecoration(
-                                      border: Border(left: BorderSide())),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Invoice#',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 9),
-                                      ),
-                                      Text(
-                                        '${id}',
-                                        style: TextStyle(fontSize: 9),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 8,
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.only(left: 2),
-                                  decoration: BoxDecoration(
-                                      border: Border(left: BorderSide())),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Date',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 9),
-                                      ),
-                                      Text(
-                                        '${date}',
-                                        style: TextStyle(fontSize: 9),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ))
-                          ],
-                        ),
-                        Container(
-                            padding: const EdgeInsets.only(top: 16, bottom: 20),
-                            margin: const EdgeInsets.only(top: 64, bottom: 16),
-                            decoration: BoxDecoration(
-                                border: Border(
-                                    top: BorderSide(), bottom: BorderSide())),
-                            child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Text('Description',
-                                            style: TextStyle(
-                                                color: PdfColors.blue800,
-                                                fontWeight: FontWeight.bold)),
-                                        Text('Price',
-                                            style: TextStyle(
-                                                color: PdfColors.blue800,
-                                                fontWeight: FontWeight.bold)),
-                                      ]),
-                                  SizedBox(height: 4),
-                                  Container(
-                                    padding: const EdgeInsets.all(4),
-                                    color: PdfColors.grey300,
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Text('Internet Charges', style: TextStyle(fontSize: 10)),
-                                          Text('Rs.${internetCharges}.00', style: TextStyle(fontSize: 10)),
-                                        ]),
-                                  ),
-                                  SizedBox(height: 4),
-                                  if (isGst)
-                                    Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 4),
-                                        child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: <Widget>[
-                                              Text('GST (18%)', style: TextStyle(fontSize: 10)),
-                                              Text('Rs.${gst}.00', style: TextStyle(fontSize: 10)),
-                                            ])),
-                                  if (!isGst) SizedBox(height: 12),
-                                  SizedBox(height: 4),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    color: PdfColors.grey300,
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[]),
-                                  ),
-                                  SizedBox(height: 20),
-                                  Container(
-                                    padding: const EdgeInsets.all(10),
-                                    color: PdfColors.grey300,
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[]),
-                                  ),
-                                ])),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text('In Words:',
-                                        style: TextStyle(
-                                            color: PdfColors.black,
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.bold)),
-                                    Text('${getPriceInWords("${total}")}',
-                                        style: TextStyle(
-                                            color: PdfColors.black,
-                                            fontSize: 8)),
-                                  ]),
-                              Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text('Total',
-                                        style: TextStyle(
-                                            color: PdfColors.black,
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.bold)),
-                                    Text('Rs.${total}.00',
-                                        style: TextStyle(
-                                            color: PdfColors.orange900,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold))
-                                  ]),
-                            ])
-                      ]))
-            ])));
+        pageFormat: PdfPageFormat.a4,
+        build: (c) => content));
 
     final op = await getExternalStorageDirectory();
-    final file = File('${op.path}/${id}.pdf');
+    print(op.path);
+    final file = File('${op.path}/${bill["bill_id"]}.pdf');
     file.writeAsBytesSync(await pdf.save());
     await FlutterEmailSender.send(Email(
-        body: 'Here is your Invoice. Thank you\n-Sumanth Net',
-        recipients: ['${email}'],
-        subject: 'RVR BILL',
-        attachmentPaths: ['${op.path}/${id}.pdf']));
+        body: 'Please find the attachment of your Invoice.\nThank you.\n-Sumanth Net',
+        // recipients: ['sumanthnani10@gmail.com'],
+        recipients: ['${user["email"]}'],
+        subject: 'Internet Bill',
+        attachmentPaths: ['${op.path}/${bill["bill_id"]}.pdf']));
     return;
   }
 
   static getPriceInWords(String price) {
+    if(price == "0") {
+      return "Zero Rupees Only";
+    }
     var ones = {};
     ones['0'] = '';
     ones['1'] = 'One ';
@@ -353,8 +93,11 @@ class PdfGeneration {
     tens['9'] = 'Ninety ';
 
     String w = ''
-            '',
-        rev = price.split('').reversed.join();
+        '',
+        rev = price
+            .split('')
+            .reversed
+            .join();
 
     for (int i = 0; i < rev.length; i++) {
       if (i == 0) {
@@ -371,18 +114,22 @@ class PdfGeneration {
       } else if (i == 1) {
         w = '${tens[rev[i]]}' + w;
       } else if (i == 2) {
-        w = '${ones[rev[i]]}${rev[i] != '0' ? 'hundred ' : ''}' + w;
+        w = '${ones[rev[i]]}${rev[i] != '0' ? 'Hundred ' : ''}' + w;
       } else if (i == 3) {
         if (rev.length > 4) {
           if (rev[4] == '1') {
-            w = '${tens['${rev[i + 1]}${rev[i]}']}thousand ' + w;
+            w = '${tens['${rev[i + 1]}${rev[i]}']}Thousand ' + w;
             i += 1;
           } else {
-            w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0') ? '' : 'thousand '}' +
+            w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0')
+                ? ''
+                : 'Thousand '}' +
                 w;
           }
         } else {
-          w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0') ? '' : 'thousand '}' +
+          w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0')
+              ? ''
+              : 'Thousand '}' +
               w;
         }
       } else if (i == 4) {
@@ -390,14 +137,18 @@ class PdfGeneration {
       } else if (i == 5) {
         if (rev.length > i + 1) {
           if (rev[i + 1] == '1') {
-            w = '${tens['${rev[i + 1]}${rev[i]}']}lakhs ' + w;
+            w = '${tens['${rev[i + 1]}${rev[i]}']}Lakhs ' + w;
             i += 1;
           } else {
-            w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0') ? '' : rev[i] == '1' ? 'lakh ' : 'lakhs '}' +
+            w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0')
+                ? ''
+                : rev[i] == '1' ? 'Lakh ' : 'Lakhs '}' +
                 w;
           }
         } else {
-          w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0') ? '' : rev[i] == '1' ? 'lakh ' : 'lakhs '}' +
+          w = '${ones[rev[i]]}${(rev[i] == '0' && rev[i + 1] == '0')
+              ? ''
+              : rev[i] == '1' ? 'Lakh ' : 'Lakhs '}' +
               w;
         }
       } else if (i == 6) {
@@ -405,21 +156,309 @@ class PdfGeneration {
       } else if (i == 7) {
         if (rev.length > i + 1) {
           if (rev[i + 1] == '1') {
-            w = '${tens['${rev[i + 1]}${rev[i]}']}crores ' + w;
+            w = '${tens['${rev[i + 1]}${rev[i]}']}Crores ' + w;
             i += 1;
           } else {
-            w = '${ones[rev[i]]}${rev[i] == '1' ? 'crore' : 'crores'} ' + w;
+            w = '${ones[rev[i]]}${rev[i] == '1' ? 'Crore' : 'Crores'} ' + w;
           }
         } else {
-          w = '${ones[rev[i]]}${rev[i] == '1' ? 'crore' : 'crores'} ' + w;
+          w = '${ones[rev[i]]}${rev[i] == '1' ? 'Crore' : 'Crores'} ' + w;
         }
       } else if (i == 8) {
         w = '${tens[rev[i]]}' + w;
       } else if (i == 9) {
-        w = '${ones[rev[i]]}${rev[i] != '0' ? 'hundred ' : ''}' + w;
+        w = '${ones[rev[i]]}${rev[i] != '0' ? 'Hundred ' : ''}' + w;
       }
     }
-    w = w + 'rupees only';
+    w = w + 'Rupees Only';
     return w;
   }
+
+  static getPDF(user, bill) async {
+    final poppins = await PdfGoogleFonts.poppinsRegular();
+    final poppinsBold = await PdfGoogleFonts.poppinsBold();
+    int accepted = -1;
+    bool isGst = bill["bill"]["gst"] != 0;
+    Plan plan = Utils.isp.plans[bill["plan"]];
+    return Theme(
+      data: ThemeData(
+        defaultTextStyle: TextStyle(font: poppins)
+      )
+    ,child: Column(children: <Widget>[
+      Container(color: PdfColors.orange600, height: 20, child: Row()),
+      Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Sumanth Net',
+                    style: TextStyle(
+                        color: PdfColors.blue900, fontSize: 24, fontWeight: FontWeight.bold, font: poppinsBold)),
+                if (isGst)
+                  Text('GST: 36AGLPB6730FIZL',
+                      style: TextStyle(
+                          color: PdfColor.fromHex('#000000'),
+                          fontSize: 8)),
+                SizedBox(height: 2),
+                Text(
+                    '12-83/1, Srinagar Colony\nPatancheru, Sangareddy, Telangana\n8801707182',
+                    style: TextStyle(
+                        color: PdfColor.fromHex('#000000'),
+                        fontSize: 10)),
+                SizedBox(height: 16),
+                Text('Invoice',
+                    style: TextStyle(
+                        color: PdfColors.purple,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold, font: poppinsBold)),
+                SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Flexible(
+                        child: Container(
+                          decoration: BoxDecoration(
+                              border: Border(left: BorderSide())),
+                          padding: const EdgeInsets.only(left: 2),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Customer Details',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, font: poppinsBold,
+                                    fontSize: 9),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '${user["user_id"]}',
+                                style: TextStyle(fontSize: 9),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '${user["name"]}',
+                                style: TextStyle(fontSize: 9),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '${user["address"]}',
+                                style: TextStyle(
+                                  fontSize: 9,
+                                ),
+                                maxLines: 2,
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '${user["mobile"]}',
+                                style: TextStyle(fontSize: 9),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '${user["email"]}',
+                                style: TextStyle(fontSize: 9),
+                              ),
+                            ],
+                          ),
+                        )),
+                    Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(left: 2),
+                              decoration: BoxDecoration(
+                                  border: Border(left: BorderSide())),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Plan',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, font: poppinsBold,
+                                        fontSize: 9),
+                                  ),
+                                  Text(
+                                    '${plan.title}',
+                                    style: TextStyle(fontSize: 9),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 12),
+                            Container(
+                              padding: const EdgeInsets.only(left: 2),
+                              decoration: BoxDecoration(
+                                  border: Border(left: BorderSide())),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Expiry Date',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, font: poppinsBold,
+                                        fontSize: 9),
+                                  ),
+                                  Text(
+                                    '${bill["expiry"]}',
+                                    style: TextStyle(fontSize: 9),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )),
+                    Flexible(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(left: 2),
+                              decoration: BoxDecoration(
+                                  border: Border(left: BorderSide())),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Invoice#',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, font: poppinsBold,
+                                        fontSize: 9),
+                                  ),
+                                  Text(
+                                    '${bill["bill_id"]}',
+                                    style: TextStyle(fontSize: 9),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 2),
+                              decoration: BoxDecoration(
+                                  border: Border(left: BorderSide())),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Date',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, font: poppinsBold,
+                                        fontSize: 9),
+                                  ),
+                                  Text(
+                                    '${bill["date"]}',
+                                    style: TextStyle(fontSize: 9),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ))
+                  ],
+                ),
+                Container(
+                    padding: const EdgeInsets.only(top: 8, bottom: 4),
+                    margin: const EdgeInsets.only(top: 32, bottom: 16),
+                    decoration: BoxDecoration(
+                        border: Border(
+                            top: BorderSide(), bottom: BorderSide())),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text('Description',
+                                    style: TextStyle(
+                                        color: PdfColors.blue800,
+                                        fontWeight: FontWeight.bold, font: poppinsBold)),
+                                Text('Price',
+                                    style: TextStyle(
+                                        color: PdfColors.blue800,
+                                        fontWeight: FontWeight.bold, font: poppinsBold)),
+                              ]),
+                          SizedBox(height: 4),
+                        ] +
+                            List.generate(amounts.length, (i) {
+                              var amount = amounts[i];
+                              if(bill["bill"][amount["key"]] == null || bill["bill"][amount["key"]] == 0){
+                                return Container();
+                              }
+                              accepted += 1;
+                              return Container(
+                                padding: const EdgeInsets.all(4),
+                                color: accepted%2==0?PdfColors.grey300:PdfColors.white,
+                                child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text('${amount["title"]} ${(amount["key"]==amounts[0]["key"] && isGst)?"(Incl. 18% GST)":""}',
+                                          style: TextStyle(fontSize: 10)),
+                                      Text('Rs.${bill["bill"][amount["key"]]+(amount["key"]==amounts[0]["key"]?bill["bill"]["gst"]:0)}.00',
+                                          style: TextStyle(fontSize: 10)),
+                                    ]),
+                              );
+                            }) +
+                            List.generate(amounts.length - accepted, (i) {
+                              accepted+=1;
+                              return Container(
+                                padding: const EdgeInsets.all(4),
+                                color: accepted%2==0?PdfColors.grey300:PdfColors.white,
+                                child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text('0',
+                                          style: TextStyle(fontSize: 10, color: accepted%2==0?PdfColors.grey300:PdfColors.white)),
+                                    ]),
+                              );
+                            }))),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('In Words:',
+                                style: TextStyle(
+                                    color: PdfColors.black,
+                                    fontSize: 9,
+                                    fontWeight: FontWeight.bold, font: poppinsBold)),
+                            Text('${getPriceInWords("${bill["total"]}")}',
+                                style: TextStyle(
+                                    color: PdfColors.black,
+                                    fontSize: 10)),
+                          ]),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text('Total',
+                                style: TextStyle(
+                                    color: PdfColors.black,
+                                    fontSize: 8,
+                                    fontWeight: FontWeight.bold, font: poppinsBold)),
+                            Text('Rs.${bill["total"]}.00',
+                                style: TextStyle(
+                                    color: PdfColors.orange900,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold, font: poppinsBold))
+                          ]),
+                    ])
+              ]))
+    ]));
+  }
+
 }

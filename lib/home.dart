@@ -5,13 +5,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sumanth_net_admin/cable/cable_payments.dart';
+import 'package:sumanth_net_admin/home_page.dart';
 import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 import 'package:sumanth_net_admin/main.dart';
-import 'package:sumanth_net_admin/users.dart';
+import 'package:sumanth_net_admin/net_user/users.dart';
 
 import 'coupons.dart';
-import 'net_payments.dart';
-import 'net_plans.dart';
+import 'net_user/net_payments.dart';
+import 'net_user/net_plans.dart';
 import 'utils.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -54,6 +55,8 @@ class _HomeScreenState extends State<HomeScreen> {
     ],
   ];
 
+  bool gettingCount = false;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -63,19 +66,26 @@ class _HomeScreenState extends State<HomeScreen> {
   int activeUsers = 0, onlineUsers = 0;
 
   getCount(setDState) async {
+    setDState(() {
+      gettingCount = true;
+    });
     ISPResponse ispResponse = await Utils.isp.getUsersCount();
     var resp = ispResponse.response["data"];
     if(ispResponse.success) {
       activeUsers = resp["res"]['active'];
       onlineUsers = resp["res"]['online'];
     }
-    setDState(() {});
+    await Utils.isp.getFranchiseBalance();
+    setDState(() {
+      gettingCount = false;
+    });
   }
 
   @override
   void initState() {
     _widgetOptions = <Widget>[
-      getHomePage(),
+      // getHomePage(),
+      HomePage(_widgetOptions, _widgetDetails, _onItemTapped),
       WillPopScope(onWillPop: () async {setState(() {_selectedIndex = 0;});return false;},child: UsersScreen()),
       WillPopScope(onWillPop: () async {setState(() {_selectedIndex = 0;});return false;},child: NetPayments()),
       WillPopScope(onWillPop: () async {setState(() {_selectedIndex = 0;});return false;},child: NetPlans()),
@@ -155,25 +165,25 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: StatefulBuilder(
         builder: (context, setDState) {
-          if(activeUsers==0){
-            getCount(setDState);
-          }
           return SingleChildScrollView(
             child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                    child: InkWell(
-                      onTap: () {
-                        getCount(setDState);
-                      },
+                  InkWell(
+                    onTap: () {
+                      getCount(setDState);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
+                          // if(gettingCount)
+                            CircularProgressIndicator(),
                           Text('Active : $activeUsers'),
                           Text('Online : $onlineUsers'),
+                          Text('Balance : \u20b9${Utils.isp.balance}'),
                         ],
                       ),
                     ),

@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:sumanth_net_admin/error_screen.dart';
 import 'package:sumanth_net_admin/isp/jaze_isp.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 
 class EditUser extends StatefulWidget {
 
@@ -28,18 +28,18 @@ class _EditUserState extends State<EditUser> {
 
   _EditUserState(this.user);
 
-  TextEditingController nameController,mobileController,emailController,addressController, ipController;
+  TextEditingController nameC,mobileC,emailC,addressC, ipC;
   bool staticIP = false;
   
 
   @override
   void initState() {
     super.initState();
-    nameController = new TextEditingController(text: user['name']);
-    mobileController = new TextEditingController(text: user['mobile']);
-    emailController = new TextEditingController(text: user['email']);
-    addressController = new TextEditingController(text: user['address']);
-    ipController = new TextEditingController(text: user['static_ip']);
+    nameC = new TextEditingController(text: user['name']);
+    mobileC = new TextEditingController(text: user['mobile']);
+    emailC = new TextEditingController(text: user['email']);
+    addressC = new TextEditingController(text: user['address']);
+    ipC = new TextEditingController(text: user['static_ip']);
     staticIP = user['static_ip']!="";
   }
 
@@ -84,7 +84,7 @@ class _EditUserState extends State<EditUser> {
                         Center(child: Text(user['user_id'],style: TextStyle(fontSize: 24),)),
                         SizedBox(height: 8,),
                         TextFormField(
-                          controller: nameController,
+                          controller: nameC,
                           textInputAction: TextInputAction.next,
                           maxLines: 1,
                           maxLength: 30,
@@ -117,7 +117,7 @@ class _EditUserState extends State<EditUser> {
                         ),
                         SizedBox(height: 8,),
                         TextFormField(
-                          controller: emailController,
+                          controller: emailC,
                           textInputAction: TextInputAction.next,
                           maxLines: 1,
                           textCapitalization: TextCapitalization.none,
@@ -159,7 +159,7 @@ class _EditUserState extends State<EditUser> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Flexible(child: TextFormField(
-                              controller: mobileController,
+                              controller: mobileC,
                               textInputAction: TextInputAction.next,
                               maxLines: 1,
                               maxLength: 10,
@@ -194,7 +194,7 @@ class _EditUserState extends State<EditUser> {
                             SizedBox(width: 8),
                             Flexible(
                               child: TextFormField(
-                                controller: ipController,
+                                controller: ipC,
                                 textInputAction: TextInputAction.next,
                                 maxLines: null,
                                 enableSuggestions: true,
@@ -226,7 +226,7 @@ class _EditUserState extends State<EditUser> {
                         ),
                         SizedBox(height: 8,),
                         TextFormField(
-                          controller: addressController,
+                          controller: addressC,
                           textInputAction: TextInputAction.done,
                           maxLines: null,
                           enableSuggestions: true,
@@ -292,7 +292,7 @@ class _EditUserState extends State<EditUser> {
         loading=true;
       });
       Utils.showLoadingDialog(context, "Editing..");
-      ISPResponse ispResponse = await Utils.isp.editUser(user, nameController.text, mobileController.text, emailController.text, addressController.text, ipController.text);
+      ISPResponse ispResponse = await Utils.isp.editUser(user, nameC.text, mobileC.text, emailC.text, addressC.text, ipC.text);
       setState(() {
         loading=false;
       });

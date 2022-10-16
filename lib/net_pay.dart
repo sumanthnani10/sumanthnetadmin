@@ -9,82 +9,133 @@ import 'package:sumanth_net_admin/pdf_generation.dart';
 import 'package:sumanth_net_admin/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'net_user.dart';
+import 'isp/jaze_isp.dart';
 
 class NetPay {
-  String billID,
+
+  String
+      billID,
       coupon,
       date,
+      expiry,
       orderID,
       plan,
-      response,
-      renewalStatusError,
-      status,
       userID,
       notes,
+      payResponse,
+      status,
+      renewalError,
       uid;
-  int amount, gst, internetCharges, renewalStatus, saved, staticPrice;
+  int total,
+      internetCharges,
+      installationCharges,
+      ipCharges,
+      otherCharges,
+      routerCharges,
+      savedCharges,
+      renewalStatus,
+      gstCharges;
 
   NetPay({
-    @required this.amount,
     @required this.billID,
     @required this.coupon,
     @required this.date,
-    @required this.gst,
+    @required this.expiry,
     @required this.orderID,
-    @required this.internetCharges,
     @required this.plan,
-    @required this.response,
-    @required this.renewalStatus,
-    @required this.renewalStatusError,
-    @required this.status,
-    @required this.saved,
-    @required this.notes,
-    @required this.staticPrice,
     @required this.userID,
+    @required this.notes,
+    @required this.payResponse,
+    @required this.status,
     @required this.uid,
+    @required this.total,
+    @required this.internetCharges,
+    @required this.installationCharges,
+    @required this.ipCharges,
+    @required this.otherCharges,
+    @required this.routerCharges,
+    @required this.savedCharges,
+    @required this.gstCharges,
+    @required this.renewalError,
+    @required this.renewalStatus,
   });
 
   factory NetPay.fromJson(Map<dynamic, dynamic> i) {
+    i["bill"] = i["bill"] ?? {
+      'internet': 0,
+      'gst': 0,
+      'ip': 0,
+      "installation": 0,
+      "router": 0,
+      "other": 0,
+      'saved': 0,
+    };
+    i["renewal"] = i["renewal"]??{
+      'status': 0, // renewal status
+      'error': "Not found in firebase.", // renewal error
+    };
+    /*List<String> d = i["date"].split("-");
+    if(i["date"].contains("/")) {
+      d = i["date"].split("/");
+    }
+    DateTime date = DateTime(int.parse(d[2]), int.parse(d[1]), int.parse(d[0]));
+    if(i["expiry"] == null) {
+      date = date.add(Duration(days: 30));
+      i["expiry"] = Utils.formatDate(date);
+    }
+    i["date"] = Utils.formatDate(date);*/
     return NetPay(
-        amount: i["total"]??0,
         billID: i["bill_id"]??"",
         coupon: i["coupon"]??"",
         date: i["date"]??"",
-        gst: i["gst"]??0,
+        expiry: i["expiry"]??"",
         orderID: i["id"]??"",
-        internetCharges: i["bill"]["internet"]??0,
         plan: i["plan"]??"",
-        response: i["pay_resp"]??"",
-        renewalStatus: (i["renewal"]["status"]??0),
-        renewalStatusError: "${i["renewal"]["error"]}"??"",
-        status: i["status"]??"",
-        notes: i["notes"]??"",
-        saved: i["bill"]["saved"]??0,
-        staticPrice: i["bill"]["ip"]??0,
         userID: i["userid"]??"",
+        notes: i["notes"]??"",
+        payResponse: i["pay_resp"]??"",
+        status: i["status"]??"",
         uid: i["uid"]??"",
+        total: i["total"]??0,
+        internetCharges: i["bill"]["internet"]?? 0, // internet charges,
+        installationCharges: i["bill"]["installation"]?? 0, // gst,
+        ipCharges: i["bill"]["ip"]?? 0, // static price,
+        otherCharges: i["bill"]["other"]?? 0,
+        routerCharges: i["bill"]["router"]?? 0,
+        savedCharges: i["bill"]["saved"]?? 0,
+        gstCharges: i["bill"]["gst"]?? 0,
+        renewalError: i["renewal"]["error"],
+        renewalStatus: i["renewal"]["status"],
     );
   }
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      "a": amount,
       "bill_id": billID,
-      "c": coupon,
-      "d": date,
-      "gst": gst,
-      "i": orderID,
-      "i_c": internetCharges,
-      "p": plan,
-      "r": response,
-      "rs": renewalStatus,
-      "rse": renewalStatusError,
-      "s": status,
-      "sa": saved,
-      "stc": staticPrice,
-      "u_id": userID,
+      "coupon": coupon,
+      "date": date,
+      "expiry": expiry,
+      "id": orderID,
+      "plan": plan,
+      "userid": userID,
+      "notes": notes,
+      "pay_resp": payResponse,
+      "status": status,
       "uid": uid,
+      "total": total,
+      "bill": {
+        'internet': internetCharges,
+        'gst': gstCharges,
+        'ip': ipCharges,
+        "installation": installationCharges,
+        "router": routerCharges,
+        "other": otherCharges,
+        'saved': savedCharges,
+      },
+      "renewal": {
+        'status': renewalStatus, // renewal status
+        'error': renewalError, // renewal error
+      },
     };
   }
 }
@@ -102,11 +153,10 @@ class NetPayTile extends StatefulWidget {
 }
 
 class _NetPayTileState extends State<NetPayTile> {
+
   BoxDecoration contDec = BoxDecoration(
       border: Border(top: BorderSide(color: Colors.black)),
       color: Colors.white);
-
-
 
   TextStyle buttonTextStyle = new TextStyle(color: Colors.blue),
       successPriceStyle = TextStyle(
@@ -129,6 +179,14 @@ class _NetPayTileState extends State<NetPayTile> {
   
   _NetPayTileState(this.user, this.pay);
 
+  Plan plan;
+
+  @override
+  void initState() {
+    plan = Utils.isp.plans[pay.plan];
+    super.initState();
+  }
+
   callUser(mobile) async {
     if (await canLaunch('tel:${mobile}')) {
       await launch('tel:${mobile}');
@@ -138,10 +196,33 @@ class _NetPayTileState extends State<NetPayTile> {
   }
 
   showReceipt(context, NetPay pay, Map user) async {
+
+    List amounts = [
+      {
+        "key": "internet",
+        "title": "Internet",
+      },
+      {
+        "key": "ip",
+        "title": "Public IP",
+      },
+      {
+        "key": "installation",
+        "title": "Installation",
+      },
+      {
+        "key": "router",
+        "title": "Router",
+      },
+      {
+        "key": "other",
+        "title": "Others",
+      },
+    ];
     var rem = <Widget>[];
     double h8 = 8;
     if (pay.status != 'failed') {
-      var s = pay.response.toString();
+      var s = pay.payResponse.toString();
       s = s.replaceAll(': ', '": "');
       s = s.replaceAll(', ', '", "');
       s = s.replaceAll('{', '{"');
@@ -195,10 +276,11 @@ class _NetPayTileState extends State<NetPayTile> {
             )),
       ];
     }
+    Map bill = pay.toJson();
     
     await showDialog(
       context: context,
-      builder: (contex) {
+      builder: (_) {
         return SimpleDialog(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -206,27 +288,9 @@ class _NetPayTileState extends State<NetPayTile> {
               Text('Receipt'),
               TextButton.icon(
                 onPressed: () async {
-                  Map<String, dynamic> netUser = user.cast();
-                  // print(Utils.isp.netUsers[user['uid']]);
-                  // netUser.addAll(Utils.isp.netUsers[user['uid']]);
-                  print(netUser);
-                  NetUser nUser = NetUser.fromJson(netUser);
-                  print(nUser);
                   if (pay.billID != null && pay.billID != "") {
                     Utils.showLoadingDialog(context, "Generating Bill");
-                    await PdfGeneration.generateBill(
-                        pay.gst != 0,
-                        nUser.userId,
-                        nUser.name,
-                        nUser.address,
-                        nUser.mobile,
-                        nUser.email,
-                        pay.plan,
-                        pay.billID,
-                        pay.date,
-                        "${pay.internetCharges}",
-                        "${pay.gst}",
-                        "${pay.amount}");
+                    await PdfGeneration.generateBill(user, pay.toJson());
                     Navigator.pop(context);
                   }
                 },
@@ -238,13 +302,6 @@ class _NetPayTileState extends State<NetPayTile> {
           contentPadding: const EdgeInsets.all(8),
           titlePadding: const EdgeInsets.symmetric(horizontal: 8),
           children: <Widget>[
-            Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Rs. ${pay.amount}   ',
-                  style:
-                  TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
-                )),
             InkWell(
                 onTap: () {
                   copy(context, '${pay.userID.toUpperCase()}');
@@ -254,28 +311,30 @@ class _NetPayTileState extends State<NetPayTile> {
                         fontSize: 16, fontWeight: FontWeight.w600))),
             SizedBox(
               height: h8,
-            ),
-            InkWell(
-                onTap: () {
-                  callUser('${user['mobile']}');
-                },
-                onLongPress: () {
-                  copy(context, '${pay.userID}');
-                },
-                child: Text(
-                  '${user['mobile']}',
-                  style: buttonTextStyle,
-                )),
-            SizedBox(
-              height: h8,
-            ),
-            InkWell(
-                onTap: () {
-                  copy(context, '${pay.orderID ?? "-"}');
-                },
-                child: Text('Order Id: ${pay.orderID ?? "-"}')),
-            SizedBox(
-              height: h8,
+            ),]+List.generate(amounts.length, (i) {
+            var amount = amounts[i];
+            if(bill["bill"][amount["key"]] == null || bill["bill"][amount["key"]] == 0){
+              return Container();
+            }
+            return Container(
+              padding: const EdgeInsets.all(4),
+              color: Colors.grey.shade200,
+              child: Row(
+                  mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('${amount["title"]} ${(amount["key"]==amounts[0]["key"] && pay.gstCharges!=0)?"(Incl. 18% GST)":""}',
+                        style: TextStyle(fontSize: 14)),
+                    Text('Rs.${bill["bill"][amount["key"]]+(amount["key"]==amounts[0]["key"]?bill["bill"]["gst"]:0)}.00',
+                        style: TextStyle(fontSize: 14)),
+                  ]),
+            );
+          })+[
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text('Total: Rs.${bill["total"]}\n',
+                style: TextStyle(
+                    fontWeight: FontWeight.bold)),
             ),
             if (pay.status == "success")
               InkWell(
@@ -290,10 +349,12 @@ class _NetPayTileState extends State<NetPayTile> {
                         Map<String, dynamic> tpay = pay.toJson();
                         tpay.addAll({
                           "bill_id": r[1],
-                          "rs": 1,
-                          "i": pay.orderID,
-                          "rse": "Manual Renewal."
-                        });
+                          "id": pay.orderID,
+                          "renewal": {
+                            "status": 1,
+                            "error": "Manual Renewal."
+                          }
+                            });
                         await FirebaseFirestore.instance
                             .collection("${Utils.isp.billsCollection}")
                             .doc("${tpay["bill_id"]}")
@@ -322,10 +383,12 @@ class _NetPayTileState extends State<NetPayTile> {
                         Map<String, dynamic> tpay = pay.toJson();
                         tpay.addAll({
                           "bill_id": "",
-                          "rs": -1,
-                          "s": "failed",
-                          "i": pay.orderID,
-                          "rse": "Manual Update."
+                          "status": "failed",
+                          "id": pay.orderID,
+                          "renewal": {
+                            "status": -1,
+                            "error": "Manual Update"
+                          }
                         });
                         await FirebaseFirestore.instance
                             .collection("${Utils.isp.billsCollection}")
@@ -351,10 +414,12 @@ class _NetPayTileState extends State<NetPayTile> {
                           Map<String, dynamic> tpay = pay.toJson();
                           tpay.addAll({
                             "bill_id": r[1],
-                            "rs": 1,
-                            "i": pay.orderID,
-                            "s": "success",
-                            "rse": "Manual Renewal."
+                            "status": "success",
+                            "id": pay.orderID,
+                            "renewal": {
+                              "status": 1,
+                              "error": "Manual Update."
+                            }
                           });
                           await FirebaseFirestore.instance
                               .collection("${Utils.isp.billsCollection}")
@@ -376,6 +441,18 @@ class _NetPayTileState extends State<NetPayTile> {
                   ),
                 ],
               ),
+            SizedBox(height: h8,),
+            InkWell(
+                onTap: () {
+                  copy(context, '${pay.orderID ?? "-"}');
+                },
+                child: Text('Order Id: ${pay.orderID ?? "-"}')),
+            SizedBox(height: h8,),
+            InkWell(
+                onTap: () {
+                  copy(context, '${pay.notes ?? "-"}');
+                },
+                child: Text('Notes: ${pay.notes ?? "-"}')),
           ] +
               rem,
         );
@@ -455,8 +532,9 @@ class _NetPayTileState extends State<NetPayTile> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  FittedBox(child: Text("${widget.pay.plan}", style: const TextStyle(color: Colors.black,fontSize: 16))),
-                  FittedBox(child: Text(widget.pay.status == 'success'?"Renewal ${widget.pay.renewalStatus==0?"Pending":(widget.pay.renewalStatus==1)?"Success":"Failed"}":"Transaction Not Successful", style: TextStyle(color: (widget.pay.renewalStatus==0?Colors.amber:widget.pay.renewalStatus==1?Colors.green:Colors.red),fontSize: 12))),
+                  FittedBox(child: Text("${plan.title}", style: const TextStyle(color: Colors.black,fontSize: 16))),
+                  FittedBox(child: Text("${widget.user["user_id"]}", style: TextStyle(color: Colors.black,fontSize: 10))),
+                  FittedBox(child: Text("${widget.pay.status == 'success'?"Renewal ${widget.pay.renewalStatus==0?"Pending":(widget.pay.renewalStatus==1)?"Success":"Failed"}":"Transaction Not Successful"}", style: TextStyle(color: (widget.pay.renewalStatus==0?Colors.amber:widget.pay.renewalStatus==1?Colors.green:Colors.red),fontSize: 12))),
                 ],
               ),
             ),
@@ -468,7 +546,7 @@ class _NetPayTileState extends State<NetPayTile> {
                 children: [
                   FittedBox(child: Text("${widget.pay.date}", style: const TextStyle(color: Colors.grey,fontSize: 10),)),
                   Text(
-                    "\u20b9 ${widget.pay.amount}",
+                    "\u20b9 ${widget.pay.total}",
                     style:  widget.pay.status == 'success'
                         ? successPriceStyle
                         : widget.pay.status == 'failed'? failurePriceStyle:pendingPriceStyle,

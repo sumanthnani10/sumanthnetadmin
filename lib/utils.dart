@@ -11,9 +11,8 @@ import 'package:sumanth_net_admin/isp/ssc.dart';
 
 import 'isp/jaze_isp.dart';
 
-class Utils{
+class Utils {
   static List<Map> cablePayments = [];
-  static List<dynamic> netPayments = [];
   static List<dynamic> coupons = [];
   static int staticIPPrice = 300;
   static Map<String, int> usersCatCount = {
@@ -40,6 +39,11 @@ class Utils{
       isp = rvrIsp;
     } else if(ispCode == "ssc") {
       isp = sscIsp;
+    }
+    if(isp.users.length == 0) {
+      await isp.getUsers();
+    } if(isp.plans.length == 0) {
+      await isp.loadPlans();
     }
   }
 
@@ -80,6 +84,24 @@ class Utils{
         );
       },
     );
+  }
+
+  static String digitsFormat(int num, [int digits = 2]) {
+    String s = "$num";
+    if (s.length < digits) {
+      s = List<String>.generate(digits - s.length, (_) => "0").join("") + s;
+    }
+    return s;
+  }
+
+  static String formatDate(DateTime dateTime, [bool time = false]) {
+    String s =
+        "${digitsFormat(dateTime.day)}/${digitsFormat(dateTime.month)}/${dateTime.year}";
+    if (time) {
+      s +=
+      " ${digitsFormat(dateTime.hour > 12 ? (12 - dateTime.hour) : dateTime.hour > 12)}/${digitsFormat(dateTime.minute)}/${dateTime.second} ${dateTime.hour > 12 ? "PM" : "AM"}";
+    }
+    return s;
   }
 
   static String notif_token;

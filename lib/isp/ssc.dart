@@ -54,6 +54,12 @@ class SSCISP extends JazeISP {
     };*/
   }
 
+  Map<String, dynamic> getSpecifics() {
+    return <String, dynamic>{
+      "lastIP": lastIP
+    };
+  }
+
   capitalize1st(String string) {
     string = string.toLowerCase();
     string = string.replaceAll("  ", " ");
@@ -81,17 +87,27 @@ class SSCISP extends JazeISP {
     return address;
   }
 
-  getUsers(context) async {
-    await super.getUsers(context);
-    users.forEach((u) {
-      if(u["static_ip"] != null && u["static_ip"] != "") {
-        if(u["static_ip"].contains(ipPref)) {
-          int ip = int.parse(u["static_ip"].replaceAll(ipPref, ""));
-          staticIPs.remove(ip);
+  getUsers() async {
+    ISPResponse ispResponse = await super.getUsers();
+    if(ispResponse.success){
+      users.forEach((u) {
+        if (u["static_ip"] != null && u["static_ip"] != "") {
+          if(u["static_ip"].contains("=>")) {
+            u["static_ip"] = u["static_ip"].substring(0, u["static_ip"].indexOf("=>"));
+          }
+          if (u["static_ip"].contains(ipPref)) {
+            try {
+              int ip = int.parse(u["static_ip"].replaceAll(ipPref, ""));
+              staticIPs.remove(ip);
+            } catch (e) {
+              print("ERROR for IP ${u["static_ip"]}: $e \n");
+            }
+          }
         }
-      }
-    });
-    lastIP = staticIPs.first;
+      });
+      lastIP = staticIPs.first;
+    }
+    return ispResponse;
   }
 
   getAddUserBody(user, plan) async {
@@ -105,7 +121,7 @@ class SSCISP extends JazeISP {
         "${now.day > 9 ? "${now.day}" : "0${now.day}"}-${now.month > 9 ? "${now.month}" : "0${now.month}"}-${now.year} ${now.hour > 9 ? "${now.hour}" : "0${now.hour}"}:${now.minute > 9 ? "${now.minute}" : "0${now.minute}"}:${now.second > 9 ? "${now.second}" : "0${now.second}"}";
     await getPlanProfileID(plan);
     String circuitID = await getCircuitID();
-    Map pland = plans[plan];
+    Plan pland = plans[plan];
     var newUser = {
       "accountId": "$ENTITY",
       "userName": "${user["userName"]}",
@@ -114,8 +130,8 @@ class SSCISP extends JazeISP {
       "emailId": "${user["emailId"]}",
       "address_line1": "${formatAddress(user["address_line1"])}",
       "installation_address_line1": "${formatAddress(user["address_line1"])}",
-      "userGroupId": "${pland["g"]}",
-      "userPlanId": "${pland["p"]}",
+      "userGroupId": "${pland.groupID}",
+      "userPlanId": "${pland.profileID}",
       "circuitId": "$circuitID",
       "gstApplicableFrom": "$gstApplicableFrom",
       "customExpirationDate": "$customExpirationDate",
@@ -204,7 +220,7 @@ class SSCISP extends JazeISP {
     return newUser;
   }
 
-  Future<ISPResponse> shiftUser(user, plan) async {
+  Future<ISPResponse> shiftUser(user, Plan plan) async {
     try {
       String circuitID = await getCircuitID();
       DateTime now = DateTime.now();
@@ -215,8 +231,6 @@ class SSCISP extends JazeISP {
       now = now.add(Duration(days: 1));
       String customExpirationDate =
           "${now.day > 9 ? "${now.day}" : "0${now.day}"}-${now.month > 9 ? "${now.month}" : "0${now.month}"}-${now.year} ${now.hour > 9 ? "${now.hour}" : "0${now.hour}"}:${now.minute > 9 ? "${now.minute}" : "0${now.minute}"}:${now.second > 9 ? "${now.second}" : "0${now.second}"}";
-      await getPlanProfileID(plan);
-      Map pland = plans[plan];
       var newUser = {
         "accountId": "$ENTITY",
         "userName": "${user["user_id"]}",
@@ -225,13 +239,13 @@ class SSCISP extends JazeISP {
         "emailId": "${user["email"]}",
         "address_line1": "${formatAddress(user["address"])}",
         "installation_address_line1": "${formatAddress(user["address"])}",
-        "userGroupId": "${pland["g"]}",
-        "userPlanId": "${pland["p"]}",
+        "userGroupId": "${plan.groupID}",
+        "userPlanId": "${plan.profileID}",
         "circuitId": "$circuitID",
         "gstApplicableFrom": "$gstApplicableFrom",
         "customExpirationDate": "$customExpirationDate",
         "chequeDate": "$chequeDate",
-        "staticIpAddress[]": "10.10.60.${lastIP}",
+        "staticIpAddress[]": "10.10.60.$lastIP",
         "password": "12345678",
         "gender": "none",
         "lastName": "",

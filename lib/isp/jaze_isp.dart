@@ -7,9 +7,8 @@ import 'package:dio_cookie_manager/dio_cookie_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:sumanth_net_admin/firestoreCollection.dart';
 import 'package:sumanth_net_admin/utils.dart';
-
-import '../error_screen.dart';
 
 class JazeISP {
   JazeISP() {
@@ -25,13 +24,15 @@ class JazeISP {
   List<dynamic> netPayments = [];
   Map<String, dynamic> netUsers = {};
   Map<String, String> headers = {};
-  Map<String, dynamic> plans = {};
-  List<String> planNames = [];
+  Plans plans_;
+  Map<String, Plan> plans = {};
+  List<String> planNames = [], planKeys = [];
   String code = "",
       cookie = '',
       authorization = '',
       usersCollection = "",
-      billsCollection = "";
+      billsCollection = "",
+      balance = "";
   int staticIPPrice = 300;
   Map<String, int> usersCatCount = {
     'Active': 0,
@@ -59,6 +60,7 @@ class JazeISP {
   String SEND_OTP = '/backend/users/send_mobile_otp_user';
   String VERIFY_OTP = '/backend/users/submit_mobile_otp_user';
   String GET_USERS = '/backend/users/get_all_data/all/all/';
+  String GET_FRANCHISE_BALANCE = '/backend/dashboard/index/true/null/true';
 
   final Uri LOGIN_API = Uri.https(
       'us-central1-sumanthnet-13082020.cloudfunctions.net', '/paysApp/login');
@@ -86,7 +88,13 @@ class JazeISP {
     SEND_OTP = "$DOMAIN$SEND_OTP";
     VERIFY_OTP = "$DOMAIN$VERIFY_OTP";
     GET_USERS = "$DOMAIN$GET_USERS";
+    GET_FRANCHISE_BALANCE = "$DOMAIN$GET_FRANCHISE_BALANCE";
+    plans_ = Plans("${code}_plans");
     loadPlans();
+  }
+
+  Map<String, dynamic> getSpecifics() {
+    return <String, dynamic>{};
   }
 
   String getUserLogsByUIDLink(String uid) {
@@ -413,7 +421,6 @@ class JazeISP {
           .post(LOGIN, data: {"username": USERNAME, "password": PASSWORD});
       authorization = jsonDecode(r.data)['message'];
       String s = r.headers.value('set-cookie');
-
       String d = '';
       d = s.substring(s.indexOf('jazewifi_'));
       d = d.substring(0, d.indexOf(';'));
@@ -422,9 +429,9 @@ class JazeISP {
       headers['cookie'] = cookie;
       headers['authorization'] = authorization;
       return ISPResponse(true, "", headers);
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e", headers);
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st", headers);
     }
   }
 
@@ -433,13 +440,13 @@ class JazeISP {
       await checkLogin();
       var r = await dio.get(USERS_COUNT);
       return ISPResponse(true, "Got count successfully.", jsonDecode(r.data));
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
-  Future<ISPResponse> getUsers(context) async {
+  Future<ISPResponse> getUsers() async {
     try {
       await checkLogin();
       var res = await dio.get(GET_USERS, queryParameters: {
@@ -766,6 +773,7 @@ class JazeISP {
         }
         usersdata[e['user_id']] = {
           'uid': e['user_id'],
+          'circuit': e['circuit_id'],
           'address': e['address_line1'],
           'activation_date': e['activation_time']
               .toString()
@@ -843,9 +851,9 @@ class JazeISP {
           users.sublist(0).where((e) => (e['status'] == 'expired')).length;
       Utils.createAppUser(notIn);
       return ISPResponse(true,"Got Users Successfully");
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e", headers);
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st", headers);
     }
   }
 
@@ -863,9 +871,9 @@ class JazeISP {
         "sendEmail": "true"
       });
       return ISPResponse(true, "Changed password of $uid to $password successfully.", resp.data);
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -877,8 +885,8 @@ class JazeISP {
         "account": "$ENTITY",
         "userName": user['user_id'],
         "password": "",
-        "userGroupId": "${plans[user['plan']]['g']}",
-        "userPlanId": "${plans[user['plan']]['p']}",
+        "userGroupId": "${plans[user['plan']].groupID}",
+        "userPlanId": "${plans[user['plan']].profileID}",
         "overrideAmount": "",
         "overrideAmountBasedOn": "withTax",
         "firstName": name,
@@ -953,20 +961,20 @@ class JazeISP {
       } else {
         return ISPResponse(false, "User Editing not Successful.", r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
-  Future<ISPResponse> shiftUser(user, plan) async {}
+  Future<ISPResponse> shiftUser(user, Plan plan) async {}
 
   getAddUserBody(user, plan) async {}
 
   Future<ISPResponse> addUser(user, plan) async {
     try {
-      var userBody = getAddUserBody(user, plan);
-
+      var userBody = await getAddUserBody(user, plan);
+      print(userBody);
       var response = await http
           .post(Uri.parse(ADD_USER), body: jsonEncode(userBody), headers: {
         'cookie': cookie,
@@ -980,13 +988,20 @@ class JazeISP {
         String uid = resp['message']['userId'];
         u['uid'] = uid;
 
-        // await addUserAuth();
+        user['uid'] = uid;
+        user["user_id"] = user["userName"];
+        user["mobile"] = user["phoneNumber"];
+        user["name"] = user["firstName"];
+
+        await uploadUser(user);
+
+        return ISPResponse(true, "Adding user successful.", resp);
       } else {
         return ISPResponse( false, "Adding user unsuccessful.", resp);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1045,9 +1060,8 @@ class JazeISP {
       "renewalcomments": ""
     };
     if(plan != user["plan"]) {
-      await getPlanProfileID(plans[plan]['g']);
-      body["planId"] = plans[plan]['p'];
-      body["groupId"] = plans[plan]['g'];
+      body["planId"] = "${plans[plan].profileID}";
+      body["groupId"] = "${plans[plan].groupID}";
     }
     return body;
   }
@@ -1088,9 +1102,9 @@ class JazeISP {
       } else {
         return ISPResponse( false, "Renewal unsuccessful.\n${resp["msg"]}", resp);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1147,9 +1161,9 @@ class JazeISP {
       });
       var r = jsonDecode(resp.data);
       return ISPResponse(true, "Got Logs of $uid successfully.", r['aaData']??[]);
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: Getting Logs of $uid unsuccessful.\n$e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: Getting Logs of $uid unsuccessful.\n$e\nTRACE: $st");
     }
   }
 
@@ -1159,9 +1173,21 @@ class JazeISP {
       var resp = await dio.get(getUserSessionsByUIDLink(uid));
       var r = jsonDecode(resp.data);
       return ISPResponse(true, "Got Sessions of $uid successfully.", r['aaData']??[]);
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: Getting Sessions of $uid unsuccessful.\n$e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: Getting Sessions of $uid unsuccessful.\n$e\nTRACE: $st");
+    }
+  }
+
+  Future<ISPResponse> getFranchiseBalance() async {
+    try {
+      await checkLogin();
+      var resp = await dio.get(GET_FRANCHISE_BALANCE);
+      var r = jsonDecode(resp.data);
+      balance = r["message"]["franchiseDetails"]["netAccountBalance"];
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      balance = "";
     }
   }
 
@@ -1175,80 +1201,89 @@ class JazeISP {
       } else {
         return "";
       }
-    } catch (e) {
-      print("ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
       return "";
     }
   }
 
-  getPlanProfileID(String plan) async {
+  Future<ISPResponse> getPlanProfileID(String groupID) async {
     try {
-      var plaan = plans[plan];
-      if(plaan.containsKey("p")) {
-        return {
-          "success": true,
-          "message": "Profile ID set successfully.",
-          "resp": {}
-        };
-      }
       await checkLogin();
       var resp = await dio.post(
         GET_PLAN_PROFILE_ID,
-        data: {"accountId": "$ENTITY", "userGroupId": "${plaan["g"]}"},
+        data: {"accountId": "$ENTITY", "userGroupId": "$groupID"},
       );
       var r = jsonDecode(resp.data);
       if (r['status'] == 'success') {
-        plaan["p"] = "${r['message'][0]['BillPlan']["id"]}";
-        return {
-          "success": true,
-          "message": "Profile ID set successfully.",
-          "resp": r
-        };
+        return ISPResponse(true, "Success", {"profileID": "${r['message'][0]['BillPlan']["id"]}"});
       } else {
-        return {
-          "success": false,
-          "message": "Profile ID setting was unsuccessful.\n${r["message"]}",
-          "resp": r
-        };
+        return ISPResponse(
+          false,
+          "Profile ID setting was unsuccessful.\n${r["message"]}",
+          r
+    );
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return {
-        "success": false,
-        "message": "Profile ID setting was unsuccessful.\n$e",
-        "resp": {"error": e}
-      };
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(
+        false,
+        "Profile ID setting was unsuccessful.\n$e\nTRACE: $st",
+        {"error": e}
+      );
     }
   }
 
-  loadPlans() async {
+  Future<ISPResponse> loadPlans() async {
     try {
       await checkLogin();
+      await plans_.getCollection();
+      plans = plans_.map;
       var resp = await http.get(Uri.parse(GET_CIRCUIT_ID), headers: headers);
       var r = jsonDecode(resp.body);
       if (r['status'] == 'success') {
         List groups = r["message"]["userGroupsAll"];
         List allowedGroups = r["message"]["allowedProfile"];
-        plans = {};
+        planNames.clear();
+        planKeys.clear();
         for (var group in groups) {
           group = group["UserGroup"];
           if (group["is_active"] && allowedGroups.contains(group["name"])) {
-            plans[group["name"]] = {
-              "g": group["id"],
-              "m": 1
-            };
-            planNames.add(group["name"]);
+            if (plans_.list.indexWhere((element) => element.name == group["name"]) == -1) {
+              var ersp = await getPlanProfileID(group["id"]);
+              String profileID = ersp.success?ersp.response["data"]["profileID"]:"";
+              Plan newPlan = Plan(
+                  active: true,
+                  isp: code,
+                  groupID: group["id"],
+                  profileID: profileID,
+                  months: 1,
+                  id: Utils.generateId("${code}_plan_"),
+                  name: group["name"],
+                  title: group["name"],
+                  mrp: 0,
+                  price: 0);
+              await plans_.upsert(newPlan, true, false);
+            } else if(plans[group["name"]].profileID == null) {
+              var ersp = await getPlanProfileID(group["id"]);
+              String profileID = ersp.success?ersp.response["profileID"]:0;
+              plans[group["name"]].profileID = profileID;
+              await plans_.upsert(plans[group["name"]], false, true);
+            }
+            planNames.add(plans_.map[group["name"]].title);
           }
         }
-        planNames.sort(
-          (a, b) => a.compareTo(b),
-        );
+        plans = plans_.map;
+        planKeys = plans.keys.toList();
+        return ISPResponse(true, "Successfully loaded plans", r);
       } else {
         plans = {};
+        return ISPResponse(false, "Loading plans unsuccessful.${r["message"]}", r);
       }
-    } catch (e) {
-      print("ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
       plans = {};
+      return ISPResponse(false, "ERROR: Loading plans unsuccessful.$e", {"error": "$e\n$st"});
     }
   }
 
@@ -1267,9 +1302,22 @@ class JazeISP {
       } else {
         return ISPResponse(false, "Email of $uid to $email change not successful\n${r["message"]}", r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
+    }
+  }
+
+  Future<ISPResponse> upsertPlan(Plan plan, bool edit) async {
+    try {
+      await plans_.upsert(plan, true, edit);
+      plans = plans_.map;
+      planNames = List<String>.generate(plans_.list.length, (i) => plans_.list[i].title);
+      planKeys = plans.keys.toList();
+      return ISPResponse(true, "Successfully Upserted Plan",);
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1288,9 +1336,9 @@ class JazeISP {
       } else {
         return ISPResponse(false, "User ID change from $oldUserID to $newUserID not successful\n${r["message"]}", r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1305,9 +1353,9 @@ class JazeISP {
       } else {
         return ISPResponse( false, "Getting bills of $uid unsuccessful.\n${r["message"]}", r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1337,9 +1385,9 @@ class JazeISP {
             'Clearing session of $username not successful.\n${r["message"]}',
             r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1365,9 +1413,9 @@ class JazeISP {
             'Password Update of ${u['user_id']} - ${u['name']} was Not Successful.\n${r["message"]}',
             r);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1376,8 +1424,8 @@ class JazeISP {
     try {
       r = await dio.post(USERS_COUNT);
       // r = await http.post(Uri.parse(USERS_COUNT), headers: headers);
-    } catch (e) {
-      print("ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
     }
     if (r == null ||
         r.data.toString() == '' ||
@@ -1410,9 +1458,9 @@ class JazeISP {
         };
         return ISPResponse( false, 'Auth Creation of ${user['user_id']} - ${user['name']} was Successful\n${jsonBody['msg']}', jsonBody);
       }
-    } catch (e) {
-      print("ERROR: $e");
-      return ISPResponse(false, "ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
+      return ISPResponse(false, "ERROR: $e\nTRACE: $st");
     }
   }
 
@@ -1428,8 +1476,8 @@ class JazeISP {
         'Invoice creation of ${bill['userid']} Successful.',
         "resp": {}
       };
-    } catch (e) {
-      print("ERROR: $e");
+    } catch (e, st) {
+      print("ERROR: $e\nTRACE: $st");
       return {
         "success": false,
         "message":
@@ -1440,7 +1488,7 @@ class JazeISP {
   }
 }
 
-class ISPResponse {
+class ISPResponse extends Object{
   bool success = false;
   String message = "";
   Map<String, dynamic> response = {};
@@ -1451,4 +1499,72 @@ class ISPResponse {
     };
   }
 
+}
+
+class Plans extends FirebaseCollection<Plan>{
+
+  Plans(colName) {
+    collectionName = colName;
+    ref = FirebaseFirestore.instance.collection(collectionName).withConverter<Plan>(
+        fromFirestore: (snap, _) => Plan.fromJson(snap.data()),
+        toFirestore: (plan, _) => plan.toJson());
+  }
+
+}
+
+class Plan {
+
+  bool active;
+  String  id,
+   name,
+   title,
+    isp,
+    groupID,
+    profileID;
+  int months,
+      mrp,
+      price;
+
+  Plan({
+    @required this.active,
+    @required this.isp,
+    @required this.groupID,
+    @required this.profileID,
+    @required this.months,
+    @required this.id,
+    @required this.name,
+    @required this.title,
+    @required this.mrp,
+    @required this.price
+  });
+
+  factory Plan.fromJson(Map<dynamic, dynamic> i) {
+    return Plan(
+      id: i["id"]??"",
+      isp: i["isp"]??"",
+      name: i["name"]??"",
+      title: i["title"]??"",
+      active: i["active"]??false,
+      groupID: i["groupID"],
+      profileID: i["profileID"],
+      months: i["months"]??1,
+      mrp: i["mrp"]??0,
+      price: i["price"]??0,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      "id": id,
+      "isp": isp,
+      "name": name,
+      "title": title,
+      "active": active,
+      "groupID": groupID,
+      "profileID": profileID,
+      "months": months,
+      "mrp": mrp,
+      "price": price,
+    };
+  }
 }

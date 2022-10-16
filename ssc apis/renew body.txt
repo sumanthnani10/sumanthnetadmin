@@ -1,0 +1,54 @@
+userIds : 71951
+accountId : mail1
+renewDefaultSettings : false
+isForceMakePayment : true
+isRenewPresentDate : false
+isPreviousGroupchange : false
+isRenewPaidUsers : false
+isRenewWithDays : false
+payAsYouGoDays : 30
+payAsYouGoResetEvery : 
+renewPeriod : days
+renewTimes : 1
+isChangePlan : false
+planId : presentPlan
+groupId : presentGroup
+renewEnable : 0
+scheduleRenew : false
+scheduleBasedOn : nextBilling
+scheduleDate : 
+prorataBasis : false
+prorataDateBasis : false
+overridePriceEnable : false
+overrideAmount : 
+overridePriceBasedOn : withTax
+renewalcomments : 
+
+"accountIdsSelected" : "mail1",
+"optionType" : "selected",
+"pinId" : "",
+"multipleacc" : "undefined",
+"ottBillingType" : "single",
+"data"[Document][uploadimg] : ",
+"voicePlanId" : "presentPlan",
+"paymentTypeVal3" : "",
+"paymentType" : "none",
+"iptvProfileId" : "presentPackage",
+"applyCoupon" : "false",
+"paymentTypeVal1" : "",
+"ottProfileId" : "presentPackage",
+"couponCode" : "",
+"voiceBillingType" : "single",
+"iptvBillingType" : "single" 
+"voiceChangePackRenew" : "false,
+"ottPlanId" : "presentPlan",
+"havePin" : "false,
+"iptvPlanId" : "presentPlan,
+"iptvProfileType" : "",
+"ottProfileType" : "",
+"voiceProfileType" : ",
+"pinPassword" : "",
+"voiceProfileId" : "presentPackage,
+"paymentTypeVal2" : "",
+"ottChangePackRenew" : "false",
+"iptvChangePackRenew" : "false"
