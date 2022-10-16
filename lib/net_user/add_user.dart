@@ -1,13 +1,8 @@
-import 'dart:convert';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 import 'package:sumanth_net_admin/error_screen.dart';
 import 'package:sumanth_net_admin/isp/jaze_isp.dart';
-import 'package:sumanth_net_admin/otp_verification.dart';
 import 'package:sumanth_net_admin/utils.dart';
 
 class AddUser extends StatefulWidget {
@@ -16,36 +11,39 @@ class AddUser extends StatefulWidget {
 }
 
 class _AddUserState extends State<AddUser> {
-  List<String> plans = [];
+  List<Plan> plans = [];
   String userID = "",
       name = '',
       phone = '',
       email = '',
       address = '',
-      selected_plan = '',
       gender = "Male",
       staticIp = "10.10.60.";
+  Plan selectedPlan;
   bool loading = false;
   var logger = Logger();
 
-  TextEditingController userIDController = new TextEditingController();
-  TextEditingController nameController = new TextEditingController();
-  TextEditingController phoneController = new TextEditingController();
-  TextEditingController emailController = new TextEditingController();
-  TextEditingController addressController = new TextEditingController();
-  TextEditingController staticIPController = new TextEditingController();
+  TextEditingController userIDC = new TextEditingController();
+  TextEditingController nameC = new TextEditingController();
+  TextEditingController phoneC = new TextEditingController();
+  TextEditingController emailC = new TextEditingController();
+  TextEditingController addressC = new TextEditingController();
+  TextEditingController staticIPC = new TextEditingController(
+      text: "10.10.10.${Utils.sscIsp.getSpecifics()["lastIP"]}");
+  TextEditingController notesC = new TextEditingController(text: "");
 
   String id = Utils.generateId("${Utils.isp.billsCollection}_");
   var u;
   DateTime now = DateTime.now();
 
-  List<dynamic> paymentOptions = ["Gpay", "Phonepe", "Paytm", "Cash", "Card"];
+  List<dynamic> paymentOptions = ["UPI", "Cash", "Card"];
   int selected = 0;
 
-  TextEditingController amountFieldController;
+  TextEditingController amountC;
 
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
 
+  List amounts = [];
   bool gst = false;
   bool static = false;
   String circuitID = "";
@@ -55,37 +53,38 @@ class _AddUserState extends State<AddUser> {
   @override
   void initState() {
     super.initState();
-    plans = ["Select Plan"] + Utils.isp.planNames;
-    selected_plan = plans[1];
+    plans = Utils.isp.plans_.list;
+    Utils.isp.loadPlans();
+    selectedPlan = plans[0];
     /*u = {
-      'a': Utils.isp.plans[selected_plan]['sr'], // total amount
+      'a': Utils.isp.plans[selectedPlan].price, // total amount
       'i': "$id", // bill id
       'c': "", // coupon used
       "d": "${now.day>9?now.day:"0${now.day}"}-${now.month>9?now.month:"0${now.month}"}-${now.year}", // date
       'gst': 0, // gst
-      'i_c': Utils.isp.plans[selected_plan]['sr'], // internet charges
-      'p': selected_plan, // plan
-      'r': "{PAYMENTMODE: Direct, GATEWAYNAME: Gpay, STATUS: Success, RESPMSG: ,}", // response
+      'i_c': Utils.isp.plans[selectedPlan].price, // internet charges
+      'p': selectedPlan, // plan
+      'r': "{PAYMENTMODE: Direct, GATEWAYNAME: UPI, STATUS: Success, RESPMSG: ,}", // response
       'rs': 1, // renewal states
       'rse': "", // renewal error
       's': "success", // payment status
-      'sa': Utils.isp.plans[selected_plan]['r'] - Utils.isp.plans[selected_plan]['sr'], // saved
+      'sa': Utils.isp.plans[selectedPlan].mrp - Utils.isp.plans[selectedPlan].price, // saved
       'stc': 0, // static price
       'uid': "", // uid
       'u_id': "", // user id
     };*/
     u = {
-      'total': Utils.isp.plans[selected_plan]['sr'] ?? 0,
+      'total': selectedPlan.price ?? 0,
       // total amount
       'id': "$id",
       'bill_id': "",
       'coupon': "",
       // coupon used
-      "date":
-          "${now.day > 9 ? now.day : "0${now.day}"}-${now.month > 9 ? now.month : "0${now.month}"}-${now.year}",
-      // date
+      "date": "${Utils.formatDate(now)}",
+      "expiry":
+          "${Utils.formatDate(now.add(Duration(days: 30 * selectedPlan.months)))}", // date
       "bill": {
-        'internet': Utils.isp.plans[selected_plan]['sr'] ?? 0,
+        'internet': selectedPlan.price ?? 0,
         // internet charges,
         'gst': 0,
         // gst,
@@ -94,15 +93,14 @@ class _AddUserState extends State<AddUser> {
         "installation": 0,
         "router": 0,
         "others": 0,
-        'saved': (Utils.isp.plans[selected_plan]["pay_resp"] ?? 0) -
-            (Utils.isp.plans[selected_plan]['sr'] ?? 0),
+        'saved': (selectedPlan.mrp) - (selectedPlan.price),
         // saved
       },
       "notes": "",
-      'plan': selected_plan,
+      'plan': selectedPlan.name,
       // plan
       'pay_resp':
-          "{PAYMENTMODE: Direct, GATEWAYNAME: Gpay, STATUS: Success, RESPMSG: ,}",
+          "{PAYMENTMODE: Direct, GATEWAYNAME: UPI, STATUS: Success, RESPMSG: ,}",
       // response
       "renewal": {
         'status': 1, // renewal status
@@ -115,8 +113,39 @@ class _AddUserState extends State<AddUser> {
       'userid': "",
       // user id
     };
-    amountFieldController = new TextEditingController(
-        text: '${Utils.isp.plans[selected_plan]['sr']}');
+    amounts = [
+      {
+        "key": "internet",
+        "title": "Internet Charges",
+        "check": true,
+        "controller": new TextEditingController(text: '${selectedPlan.price}'),
+      },
+      {
+        "key": "ip",
+        "title": "Public IP",
+        "check": false,
+        "controller": new TextEditingController(text: '0'),
+      },
+      {
+        "key": "installation",
+        "title": "Installation",
+        "check": false,
+        "controller": new TextEditingController(text: '0'),
+      },
+      {
+        "key": "router",
+        "title": "Router",
+        "check": false,
+        "controller": new TextEditingController(text: '0'),
+      },
+      {
+        "key": "other",
+        "title": "Others",
+        "check": false,
+        "controller": new TextEditingController(text: '0'),
+      },
+    ];
+    amountC = new TextEditingController(text: '${selectedPlan.price}');
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       getCircuitId();
     });
@@ -147,21 +176,22 @@ class _AddUserState extends State<AddUser> {
                 ))
           ],
         ),
-        body: Stack(
-          children: <Widget>[
-            AbsorbPointer(
-              absorbing: loading,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Form(
-                    key: formKey,
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: <Widget>[
+        body: AbsorbPointer(
+          absorbing: loading,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Form(
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: <Widget>[
+                          SizedBox(
+                            height: 8,
+                          ),
                           TextFormField(
                             onChanged: (v) {
                               userID = v;
-                              u['u_id'] = v;
+                              u['userid'] = v;
                             },
                             validator: (v) {
                               if (v.isEmpty) {
@@ -170,7 +200,7 @@ class _AddUserState extends State<AddUser> {
                                 return null;
                               }
                             },
-                            controller: userIDController,
+                            controller: userIDC,
                             keyboardType: TextInputType.text,
                             onEditingComplete: () {
                               FocusScope.of(context).unfocus();
@@ -180,7 +210,7 @@ class _AddUserState extends State<AddUser> {
                             textCapitalization: TextCapitalization.words,
                             maxLines: 1,
                             decoration: InputDecoration(
-                                filled: true,
+                                filled: false,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 16),
                                 border: OutlineInputBorder(
@@ -191,7 +221,7 @@ class _AddUserState extends State<AddUser> {
                                 labelText: 'User ID *'),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 16,
                           ),
                           TextFormField(
                             onChanged: (v) {
@@ -204,7 +234,7 @@ class _AddUserState extends State<AddUser> {
                                 return null;
                               }
                             },
-                            controller: nameController,
+                            controller: nameC,
                             keyboardType: TextInputType.text,
                             onEditingComplete: () {
                               FocusScope.of(context).unfocus();
@@ -214,7 +244,7 @@ class _AddUserState extends State<AddUser> {
                             textCapitalization: TextCapitalization.words,
                             maxLines: 1,
                             decoration: InputDecoration(
-                                filled: true,
+                                filled: false,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 16),
                                 border: OutlineInputBorder(
@@ -225,74 +255,86 @@ class _AddUserState extends State<AddUser> {
                                 labelText: 'Name *'),
                           ),
                           SizedBox(
-                            height: 8,
+                            height: 16,
                           ),
-                          TextFormField(
-                            onEditingComplete: () {
-                              FocusScope.of(context).unfocus();
-                              FocusScope.of(context).nextFocus();
-                            },
-                            textInputAction: TextInputAction.next,
-                            onChanged: (v) {
-                              phone = v;
-                            },
-                            validator: (v) {
-                              if (v.isEmpty) {
-                                return 'Enter Phone Number';
-                              } else {
-                                return null;
-                              }
-                            },
-                            controller: phoneController,
-                            keyboardType: TextInputType.number,
-                            maxLines: 1,
-                            decoration: InputDecoration(
-                                filled: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 16),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black, width: 2),
-                                    borderRadius: BorderRadius.circular(8)),
-                                hintText: "Phone *",
-                                labelText: 'Phone *'),
+                          Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child: TextFormField(
+                                  onEditingComplete: () {
+                                    FocusScope.of(context).unfocus();
+                                    FocusScope.of(context).nextFocus();
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                  onChanged: (v) {
+                                    phone = v;
+                                  },
+                                  validator: (v) {
+                                    if (v.isEmpty) {
+                                      return 'Enter Phone Number';
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  controller: phoneC,
+                                  keyboardType: TextInputType.number,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      filled: false,
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 8),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      hintText: "Phone *",
+                                      labelText: 'Phone *'),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Flexible(
+                                flex: 2,
+                                child: TextFormField(
+                                  onEditingComplete: () {
+                                    FocusScope.of(context).unfocus();
+                                    FocusScope.of(context).nextFocus();
+                                  },
+                                  textInputAction: TextInputAction.next,
+                                  onChanged: (v) {
+                                    email = v;
+                                  },
+                                  validator: (v) {
+                                    if (v.isEmpty) {
+                                      return 'Enter Email';
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  controller: emailC,
+                                  keyboardType: TextInputType.emailAddress,
+                                  textCapitalization: TextCapitalization.none,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      filled: false,
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 8),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      hintText: "Email *",
+                                      labelText: 'Email *'),
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(
-                            height: 8,
-                          ),
-                          TextFormField(
-                            onEditingComplete: () {
-                              FocusScope.of(context).unfocus();
-                              FocusScope.of(context).nextFocus();
-                            },
-                            textInputAction: TextInputAction.next,
-                            onChanged: (v) {
-                              email = v;
-                            },
-                            validator: (v) {
-                              if (v.isEmpty) {
-                                return 'Enter Email';
-                              } else {
-                                return null;
-                              }
-                            },
-                            controller: emailController,
-                            keyboardType: TextInputType.emailAddress,
-                            textCapitalization: TextCapitalization.none,
-                            maxLines: 1,
-                            decoration: InputDecoration(
-                                filled: true,
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 16),
-                                border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Colors.black, width: 2),
-                                    borderRadius: BorderRadius.circular(8)),
-                                hintText: "Email *",
-                                labelText: 'Email *'),
-                          ),
-                          SizedBox(
-                            height: 8,
+                            height: 16,
                           ),
                           TextFormField(
                             onEditingComplete: () {
@@ -311,12 +353,12 @@ class _AddUserState extends State<AddUser> {
                                 return null;
                               }
                             },
-                            controller: addressController,
+                            controller: addressC,
                             keyboardType: TextInputType.text,
                             textCapitalization: TextCapitalization.words,
                             maxLines: 1,
                             decoration: InputDecoration(
-                                filled: true,
+                                filled: false,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 8.0, horizontal: 16),
                                 border: OutlineInputBorder(
@@ -326,150 +368,331 @@ class _AddUserState extends State<AddUser> {
                                 hintText: "Address *",
                                 labelText: 'Address *'),
                           ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: TextFormField(
+                                  onEditingComplete: () {
+                                    FocusScope.of(context).unfocus();
+                                    FocusScope.of(context).nextFocus();
+                                  },
+                                  textInputAction: TextInputAction.done,
+                                  onChanged: (v) {
+                                    staticIp = v;
+                                  },
+                                  validator: (v) {
+                                    return null;
+                                  },
+                                  controller: staticIPC,
+                                  keyboardType: TextInputType.number,
+                                  maxLines: 1,
+                                  decoration: InputDecoration(
+                                      filled: false,
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 16),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.black, width: 2),
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      hintText: "Static IP",
+                                      labelText: 'Static IP'),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 2,
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 4, horizontal: 8),
+                                  margin: const EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 8),
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Expanded(
+                                          child: ElevatedButton(
+                                        onPressed: () async {
+                                          setState(() {
+                                            gender = "Male";
+                                          });
+                                        },
+                                        child: Text(
+                                          "Male",
+                                          style: TextStyle(
+                                              color: gender == "Male"
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.all(8),
+                                            primary: gender != "Male"
+                                                ? Colors.black
+                                                : Colors.white),
+                                      )),
+                                      SizedBox(
+                                        width: 16,
+                                      ),
+                                      Expanded(
+                                          child: ElevatedButton(
+                                        onPressed: () async {
+                                          setState(() {
+                                            gender = "Female";
+                                          });
+                                        },
+                                        child: Text(
+                                          "Female",
+                                          style: TextStyle(
+                                              color: gender == "Female"
+                                                  ? Colors.black
+                                                  : Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        style: ElevatedButton.styleFrom(
+                                            padding: const EdgeInsets.all(8),
+                                            primary: gender != "Female"
+                                                ? Colors.black
+                                                : Colors.white),
+                                      )),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
                           Container(
                             padding: const EdgeInsets.symmetric(
                                 vertical: 1, horizontal: 8),
                             margin: const EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 8),
+                                vertical: 8, horizontal: 8),
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(color: Colors.black)),
-                            child: DropdownButton(
+                            child: DropdownButton<Plan>(
                                 isExpanded: true,
                                 items: List.generate(
                                     plans.length,
-                                    (index) => DropdownMenuItem(
-                                          child: Text('${plans[index]}'),
+                                    (index) => DropdownMenuItem<Plan>(
+                                          child: Text('${plans[index].title}'),
                                           value: plans[index],
                                         )),
-                                value: selected_plan,
-                                onChanged: (v) {
+                                value: selectedPlan,
+                                onChanged: (Plan v) {
                                   setState(() {
-                                    selected_plan = v;
-                                    u['p'] = v;
-                                    amountFieldController.text =
-                                        "${Utils.isp.plans[selected_plan]['sr']}";
+                                    selectedPlan = v;
+                                    u['plan'] = v.name;
+                                    amountC.text = "${selectedPlan.price}";
+                                    u["expiry"] =
+                                        "${Utils.formatDate(now.add(Duration(days: 30 * selectedPlan.months)))}";
                                     setState(() {
                                       calculate();
                                     });
                                   });
                                 }),
                           ),
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: SizedBox(
-                              width: 150,
-                              child: TextFormField(
-                                controller: amountFieldController,
-                                textInputAction: TextInputAction.done,
-                                keyboardType: TextInputType.number,
-                                decoration: InputDecoration(
-                                    labelText: "Amount", prefixText: "Rs. "),
-                                onChanged: (v) {
-                                  setState(() {
-                                    calculate();
-                                  });
-                                },
-                                onFieldSubmitted: (v) {
-                                  setState(() {
-                                    calculate();
-                                  });
-                                },
+                          /*Padding(
+                        padding: const EdgeInsets.only(right: 0, bottom: 8),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                      onPressed: () {
+                                        if (selected > 0) {
+                                          selected -= 1;
+                                          u["pay_resp"] =
+                                              "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
+                                          setState(() {});
+                                        }
+                                      },
+                                      icon: Icon(
+                                          CupertinoIcons.left_chevron)),
+                                  Text(paymentOptions[selected]),
+                                  IconButton(
+                                      onPressed: () {
+                                        if (selected <
+                                            paymentOptions.length - 1) {
+                                          selected += 1;
+                                          u["pay_resp"] =
+                                              "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
+                                          setState(() {});
+                                        }
+                                      },
+                                      icon: Icon(
+                                          CupertinoIcons.right_chevron)),
+                                ]),
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  gst = !gst;
+                                  calculate();
+                                });
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Checkbox(
+                                      value: gst,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          gst = value;
+                                          calculate();
+                                        });
+                                      }),
+                                  Text("GST")
+                                ],
                               ),
                             ),
-                          ),
-                          Container(
+                            InkWell(
+                              onTap: () {
+                                setState(() {
+                                  static = !static;
+                                  calculate();
+                                });
+                              },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Checkbox(
+                                      value: static,
+                                      onChanged: (bool value) {
+                                        setState(() {
+                                          static = value;
+                                          calculate();
+                                        });
+                                      }),
+                                  Text("Static IP")
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Text(
+                        'Total: Rs.${u["bill"]['internet']}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      Text(
+                        '${gst ? ' (with GST)' : ''} ${static ? ' (static: ${Utils.staticIPPrice * Utils.isp.plans[selectedPlan].months})' : ''}',
+                        style: TextStyle(
+                          fontSize: 12,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),*/
+                        ] +
+                        List.generate(amounts.length, (i) {
+                          return Container(
+                            color: i % 2 == 0
+                                ? Colors.transparent
+                                : Colors.black12,
                             padding: const EdgeInsets.symmetric(
-                                vertical: 4, horizontal: 8),
-                            margin: const EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 16),
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: Colors.black,
-                                borderRadius: BorderRadius.circular(8)),
+                                horizontal: 8.0, vertical: 0),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
-                                    child: ElevatedButton(
-                                  onPressed: () async {
-                                    setState(() {
-                                      gender = "Male";
-                                    });
-                                  },
-                                  child: Text(
-                                    "Male",
-                                    style: TextStyle(
-                                        color: gender == "Male"
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.all(8),
-                                      primary: gender != "Male"
-                                          ? Colors.black
-                                          : Colors.white),
-                                )),
-                                SizedBox(
-                                  width: 16,
+                                Checkbox(
+                                    value: amounts[i]["check"],
+                                    onChanged: (v) {
+                                      setState(() {
+                                        amounts[i]["check"] = v;
+                                        calculate();
+                                      });
+                                    }),
+                                Flexible(
+                                  flex: 2,
+                                  child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text("${amounts[i]["title"]}")),
                                 ),
-                                Expanded(
-                                    child: ElevatedButton(
-                                  onPressed: () async {
-                                    setState(() {
-                                      gender = "Female";
-                                    });
-                                  },
-                                  child: Text(
-                                    "Female",
-                                    style: TextStyle(
-                                        color: gender == "Female"
-                                            ? Colors.black
-                                            : Colors.white,
-                                        fontWeight: FontWeight.bold),
+                                Flexible(
+                                  flex: 1,
+                                  child: TextFormField(
+                                    controller: amounts[i]["controller"],
+                                    textInputAction: TextInputAction.done,
+                                    keyboardType: TextInputType.number,
+                                    decoration: InputDecoration(
+                                        prefixText: "Rs. ",
+                                        contentPadding: EdgeInsets.zero),
+                                    onFieldSubmitted: (v) {
+                                      setState(() {
+                                        calculate();
+                                      });
+                                    },
                                   ),
-                                  style: ElevatedButton.styleFrom(
-                                      padding: const EdgeInsets.all(8),
-                                      primary: gender != "Female"
-                                          ? Colors.black
-                                          : Colors.white),
-                                )),
+                                ),
                               ],
+                            ),
+                          );
+                        }) +
+                        [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextFormField(
+                              controller: notesC,
+                              textInputAction: TextInputAction.done,
+                              keyboardType: TextInputType.text,
+                              maxLines: null,
+                              onChanged: (v) {
+                                u["notes"] = v;
+                              },
+                              decoration: InputDecoration(
+                                  labelText: "Notes",
+                                  contentPadding: EdgeInsets.zero),
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 0, bottom: 8),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      IconButton(
-                                          onPressed: () {
-                                            if (selected > 0) {
-                                              selected -= 1;
-                                              u['r'] =
-                                                  "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
-                                              setState(() {});
+                                      InkWell(
+                                          onTap: () {
+                                            if (selected == 0) {
+                                              selected = paymentOptions.length;
                                             }
+                                            selected -= 1;
+                                            u["pay_resp"] =
+                                                "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
+                                            setState(() {});
                                           },
-                                          icon: Icon(
+                                          child: Icon(
                                               CupertinoIcons.left_chevron)),
                                       Text(paymentOptions[selected]),
-                                      IconButton(
-                                          onPressed: () {
-                                            if (selected <
+                                      InkWell(
+                                          onTap: () {
+                                            if (selected ==
                                                 paymentOptions.length - 1) {
-                                              selected += 1;
-                                              u['r'] =
-                                                  "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
-                                              setState(() {});
+                                              selected = -1;
                                             }
+                                            selected += 1;
+                                            u["pay_resp"] =
+                                                "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
+                                            setState(() {});
                                           },
-                                          icon: Icon(
+                                          child: Icon(
                                               CupertinoIcons.right_chevron)),
                                     ]),
                                 InkWell(
@@ -480,7 +703,7 @@ class _AddUserState extends State<AddUser> {
                                     });
                                   },
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Checkbox(
                                           value: gst,
@@ -494,33 +717,11 @@ class _AddUserState extends State<AddUser> {
                                     ],
                                   ),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      static = !static;
-                                      calculate();
-                                    });
-                                  },
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Checkbox(
-                                          value: static,
-                                          onChanged: (bool value) {
-                                            setState(() {
-                                              static = value;
-                                              calculate();
-                                            });
-                                          }),
-                                      Text("Static IP")
-                                    ],
-                                  ),
-                                ),
                               ],
                             ),
                           ),
                           Text(
-                            'Total: Rs.${u['a']}',
+                            'Total: Rs.${u["total"]}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
@@ -528,19 +729,16 @@ class _AddUserState extends State<AddUser> {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            '${gst ? ' (with GST)' : ''} ${static ? ' (static: ${Utils.staticIPPrice * Utils.isp.plans[selected_plan]['m']})' : ''}',
+                            '${u["bill"]["internet"]} (Plan)${gst ? ' + ${u["bill"]["gst"]} (with GST)' : ''}',
                             style: TextStyle(
                               fontSize: 12,
                             ),
                             textAlign: TextAlign.center,
                           ),
                         ],
-                      ),
-                    )),
-              ),
-            ),
-            if (loading) Center(child: CircularProgressIndicator())
-          ],
+                  ),
+                )),
+          ),
         ),
       ),
     );
@@ -557,7 +755,7 @@ class _AddUserState extends State<AddUser> {
       "address_line1": "$address",
     };
 
-    ISPResponse ispResponse = await Utils.isp.addUser(user, selected_plan);
+    ISPResponse ispResponse = await Utils.isp.addUser(user, selectedPlan.name);
     var resp = ispResponse.response["data"];
 
     Navigator.pop(context);
@@ -571,10 +769,6 @@ class _AddUserState extends State<AddUser> {
       ispResponse = await Utils.isp.addLatestBillToFirebase(u);
       resp = ispResponse.response["data"];
 
-      Navigator.pop(context);
-
-      Utils.showLoadingDialog(context, "Creating User Authentication");
-      await addUserAuth();
       Navigator.pop(context);
 
       if (!ispResponse.success) {
@@ -599,8 +793,8 @@ class _AddUserState extends State<AddUser> {
     var body = {
       "userName": "$userID",
       "password": "12345678",
-      "userGroupId": "${Utils.isp.plans[selected_plan]['g']}",
-      "userPlanId": "${Utils.isp.plans[selected_plan]['p']}",
+      "userGroupId": "${Utils.isp.plans[selectedPlan]['g']}",
+      "userPlanId": "${Utils.isp.plans[selectedPlan]['p']}",
       "firstName": "$name",
       "phoneNumber": "$phone",
       "emailId": "$email",
@@ -745,31 +939,31 @@ class _AddUserState extends State<AddUser> {
     }
   }*/
 
-  addUserAuth() async {
-    ISPResponse ispResponse = await Utils.isp.uploadUser(u);
-    if(!ispResponse.success) {
-      await Utils.showErrorDialog(context, "Error", ispResponse.message);
-    }
-  }
-
   calculate() async {
-    u['gst'] = 0;
-    u['stc'] = (static ? Utils.staticIPPrice : 0) *
-        Utils.isp.plans[selected_plan]['m'];
-    u['i_c'] = int.parse(amountFieldController.text);
+    u["bill"]["gst"] = 0;
+    u["total"] = 0;
+    amounts.forEach((amnt) {
+      if (amnt["check"]) {
+        u["bill"][amnt["key"]] = int.parse(amnt["controller"].text);
+        u["total"] += u["bill"][amnt["key"]];
+      } else {
+        u["bill"][amnt["key"]] = 0;
+      }
+    });
     if (gst) {
-      u["gst"] = (u['i_c'] * 0.18).toInt();
+      u["bill"]["gst"] = (u["bill"]["internet"] * 0.18).toInt();
+      u["total"] += u["bill"]["gst"];
     }
-    u['a'] = u['i_c'] + u['gst'] + u['stc'];
-    u['sa'] = Utils.isp.plans[selected_plan]['r'] - u['i_c'];
-    u['r'] =
+    // u["total"] = u["bill"]["internet"] + u["bill"]["gst"] + u["bill"]["ip"];
+    u["bill"]["saved"] = (selectedPlan.mrp - u["bill"]["internet"]);
+    u["pay_resp"] =
         "{PAYMENTMODE: Direct, GATEWAYNAME: ${paymentOptions[selected]}, STATUS: Success, RESPMSG: ,}";
   }
 
   getCircuitId() async {
     Utils.showLoadingDialog(context, "Getting User ID.");
     circuitID = await Utils.isp.getCircuitID();
-    userIDController.text = "022825$circuitID";
+    userIDC.text = "022825$circuitID";
     u["u_id"] = "022825$circuitID";
     userID = "022825$circuitID";
     Navigator.pop(context);
